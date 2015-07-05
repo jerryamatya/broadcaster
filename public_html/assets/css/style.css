@@ -1,0 +1,16 @@
+body{
+	padding-top:70px;
+}
+.b-loading{
+  padding-left:20px;
+}
+.b-hide{
+	display: none;
+}
+
+.loading {
+	background-repeat:no-repeat;
+    background-position: center center;
+    background-image:url(../images/horizontal_loading.gif);
+    min-height:10px;
+}
