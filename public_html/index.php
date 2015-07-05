@@ -34,32 +34,18 @@ require __DIR__.'/../laravel/bootstrap/autoload.php';
 
 $app = require_once __DIR__.'/../laravel/bootstrap/app.php';
 
-<<<<<<< HEAD
-$app->bind('path.public', function() {
-    return __DIR__;
-});
-
-=======
->>>>>>> 22be403ff560b2bebfd1c48a952bcdee7ef708da
 /*
 |--------------------------------------------------------------------------
 | Run The Application
 |--------------------------------------------------------------------------
 |
-<<<<<<< HEAD
-| Once we have the application, we can simply call the run method,
-| which will execute the request and send the response back to
-=======
 | Once we have the application, we can handle the incoming request
 | through the kernel, and send the associated response back to
->>>>>>> 22be403ff560b2bebfd1c48a952bcdee7ef708da
 | the client's browser allowing them to enjoy the creative
 | and wonderful application we have prepared for them.
 |
 */
 
-<<<<<<< HEAD
-=======
 /*
 Set Public Path
  */
@@ -67,7 +53,6 @@ $app->bind('path.public', function() {
     return __DIR__;
 });
 
->>>>>>> 22be403ff560b2bebfd1c48a952bcdee7ef708da
 $kernel = $app->make('Illuminate\Contracts\Http\Kernel');
 
 $response = $kernel->handle(
