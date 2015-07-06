@@ -128,3 +128,5 @@ Route::group(['prefix'=>'api/v1'],function(){
 	Route::get('broadcasters/{id}/data','api\v1\BroadcastersController@getData');
 
 });
+
+//test changes
