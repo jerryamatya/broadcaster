@@ -1,7 +1,6 @@
 <?php namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 use Broadcasters\Providers\BroadcasterServiceProvider as BroadcasterServiceProvider;
@@ -37,20 +36,46 @@ use AuthenticatesAndRegistersUsers;
 	 * @return void
 	 */
 	public function __construct(
-		Registrar $registrar,
 		ServicesServiceProvider $servicesServiceProvider
 		)
 	
 	{
-		$this->registrar = $registrar;
 
 		$this->servicesServiceProvider = $servicesServiceProvider;
+	
+		/**
+	 * Get a validator for an incoming registration request.
+	 *
+	 * @param  array  $data
+	 * @return \Illuminate\Contracts\Validation\Validator
+	 */
+	public function validator(array $data)
+	{
+		return Validator::make($data, [
+			'name' => 'required|max:255',
+			'email' => 'required|email|max:255|unique:users',
+			'password' => 'required|confirmed|min:6',
+		]);
+	}
+
+	/**
+	 * Create a new user instance after a valid registration.
+	 *
+	 * @param  array  $data
+	 * @return User
+	 */
+	public function create(array $data)
+	{
+		return User::create([
+			'email' => $data['email'],
+			'password' => bcrypt($data['password']),
+		]);
 	}
 	public function postRegister(RegisterBroadcastersRequest $request, BroadcasterServiceProvider $broadcasters)
 	{
 		//dd($request->all());
 		\DB::transaction(function() use ($request, $broadcasters){
-			$user = $this->registrar->create($request->only('email','password'));
+			$user = $this->create($request->only('email','password'));
 			$broadcaster = $broadcasters->saveData($request->only('company_name','display_name'));
 			$broadcaster->services()->attach($request->get('services'));//add services to broadcaster
 		});
