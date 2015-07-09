@@ -42,6 +42,7 @@ use AuthenticatesAndRegistersUsers;
 	{
 
 		$this->servicesServiceProvider = $servicesServiceProvider;
+	}
 	
 		/**
 	 * Get a validator for an incoming registration request.
