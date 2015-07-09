@@ -24,7 +24,10 @@
 	"autoload-dev": {
 		"classmap": [
 			"tests/TestCase.php"
-		]
+		],
+		   "files" : [
+            "app/helpers.php"
+        ]
 	},
 	"scripts": {
 		"post-install-cmd": [
