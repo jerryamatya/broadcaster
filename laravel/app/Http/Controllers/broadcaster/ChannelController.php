@@ -61,7 +61,7 @@ class ChannelController extends MyBaseController {
 	}
 	public function update($id, CreateChannelRequest $request)
 	{
-		$this->channel->update($request, $id);
+		$this->channel->bupdate($request, $id);
 		return \Redirect::route('bchannelList')->withSuccess("Channel Updated");
 
 	}

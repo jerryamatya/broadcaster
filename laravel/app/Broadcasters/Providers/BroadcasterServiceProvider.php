@@ -174,7 +174,7 @@ class BroadcasterServiceProvider extends BaseServiceProvider{
 
 	public function getList()
 	{
-		return $this->model->lists('display_name','id');
+		return $this->model->lists('display_name','id')->all();
 	}
 
 	public function getBroadcasterServices($id=null)

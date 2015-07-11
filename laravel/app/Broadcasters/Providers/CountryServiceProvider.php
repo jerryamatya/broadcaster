@@ -13,7 +13,7 @@ class CountryServiceProvider {
 	
 	public function getList()
 	{
-		return $this->model->lists('name','id');
+		return $this->model->lists('name','id')->all();
 	}
 
 }

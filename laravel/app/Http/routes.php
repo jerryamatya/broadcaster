@@ -80,7 +80,7 @@ Route::group(['prefix'=>'admin','before'=>'csrf','middleware'=>'auth'], function
 	Route::post('broadcaster/register', ['as'=>'postRegisterBroadcaster','uses'=>'Auth\AuthController@postRegister']);
 	Route::get('broadcaster/login', ['as'=>'broadcasterLogin','uses'=>'Auth\AuthController@getLogin']);
 	Route::post('broadcaster/login', ['as'=>'postLoginBroadcaster','uses'=>'Auth\AuthController@postLogin']);
-Route::group(['prefix'=>'broadcaster','middleware'=>'authBroadcaster'], function()
+Route::group(['prefix'=>'broadcaster','middleware'=>['authBroadcaster']], function()
 {
 	Route::get('/', ['as'=>'broadcasterHome','uses'=>'broadcaster\HomeController@index']);
 	Route::get('profile', ['as'=>'broadcasterProfile','uses'=>'broadcaster\ProfileController@get']);
@@ -104,6 +104,11 @@ Route::group(['prefix'=>'broadcaster','middleware'=>'authBroadcaster'], function
 		Route::get('channel/{id}/epg/create', ['as'=>'bchannelEpgCreate','uses'=>'broadcaster\EpgController@create']);
 		Route::post('channel/{id}/epg/store', ['as'=>'bchannelEpgStore','uses'=>'broadcaster\EpgController@store']);
 		Route::post('epg/{id}/save', ['as'=>'bepgUpdate','uses'=>'broadcaster\EpgController@update']);
+
+		Route::get('vod', ['as'=>'bvodList','uses'=>'broadcaster\VodController@index']);
+		Route::get('vod/{id}/edit', ['as'=>'bvodEdit','uses'=>'broadcaster\VodController@edit']);
+		Route::post('vod/{id}/update', ['as'=>'bvodUpdate','uses'=>'broadcaster\VodController@update']);
+
 		
 	});
 

@@ -15,9 +15,11 @@ class VodServiceProvider extends BaseServiceProvider{
 	{
 		return $this->model->findOrFail($id);
 	}
-	public function getByBroadcaster($id)
+	public function getByBroadcaster($broadcaster_id=null)
 	{
-		return $this->model->where("broadcaster_id","=",$id)->firstOrFail();
+				$broadcaster_id = $broadcaster_id?$broadcaster_id:\Auth::user()->broadcaster->id;
+
+		return $this->model->where("broadcaster_id","=",$broadcaster_id)->firstOrFail();
 	}
 	public function getAll()
 	{
@@ -63,8 +65,21 @@ class VodServiceProvider extends BaseServiceProvider{
 
 		$vod->broadcaster_id = $request->get('broadcaster_id');
 		$vod->cod = serialize($request->get('cod'));
-		$vod->urlTokenKey = $request->get('urlTokenKey');
-		$vod->validTime =  $request->get('validTime');
+		try{
+			$vod->save();
+			
+		}
+		catch(\Exception $e){
+			dd($e);
+		}
+	}
+
+	public function bupdate($id, $request)
+	{
+		$vod = $this->model->findOrFail($id);
+
+		$vod->cod = serialize($request->get('cod'));
+		dd($vod->cod);
 		try{
 			$vod->save();
 			

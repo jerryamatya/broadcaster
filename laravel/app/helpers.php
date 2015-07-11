@@ -30,6 +30,7 @@ function getServicesNav($services)
 
 function getBroadcasterServicesNav($services)
 {
+
 	$items = null;
 	foreach($services as $service){
 		$active = setBroadcasterActive(getBroadcasterServiceSlug($service->name));
@@ -76,6 +77,8 @@ function getServiceLink($name){
 		return route('broadcasterHome');
 		case 'News Blog':
 		return route('newsList');
+		case 'Vod':
+		return route('bvodList');
 		default:
 			# code...
 		break;

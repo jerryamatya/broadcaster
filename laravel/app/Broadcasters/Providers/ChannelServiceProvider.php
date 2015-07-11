@@ -84,6 +84,35 @@ class ChannelServiceProvider extends BaseServiceProvider {
 		}
 	}
 
+	public function bupdate($request, $id)
+	{
+		$channel = $this->model->findOrFail($id);
+
+		$channel->name = $request->get('name');
+		$channel->broadcaster_id = $request->get('broadcaster_id');
+		$channel->details = $request->get('details');
+		$channel->country_id = $request->get('country_id');
+		$channel->language = $request->get('language');
+		$channel->local_source = $request->get('local_source');
+		$channel->cdn_source = $request->get('cdn_source');
+
+		//update logo
+		if($request->hasFile('logo')){
+			$file = $request->file('logo');
+			$logo = time() . "-".$file->getClientOriginalName();
+			$file->move(public_path().\Config::get('site.channelLogoPath'),$logo);
+			
+			//update live tv if logo is moved
+			$channel->logo = $logo;
+			//delete previous logo			
+		}
+		
+		try{
+			$channel->save();
+		}
+		catch(\Exception $e){
+		}
+	}
 	public function getBroadcasterChannels($broadcasterid = null)
 	{
 		if(!$broadcasterid && !\Auth::check()){
