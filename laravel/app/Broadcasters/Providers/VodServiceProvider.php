@@ -79,7 +79,6 @@ class VodServiceProvider extends BaseServiceProvider{
 		$vod = $this->model->findOrFail($id);
 
 		$vod->cod = serialize($request->get('cod'));
-		dd($vod->cod);
 		try{
 			$vod->save();
 			
