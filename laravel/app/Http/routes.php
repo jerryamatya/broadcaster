@@ -80,7 +80,7 @@ Route::group(['prefix'=>'admin','before'=>'csrf','middleware'=>'auth'], function
 	Route::post('broadcaster/register', ['as'=>'postRegisterBroadcaster','uses'=>'Auth\AuthController@postRegister']);
 	Route::get('broadcaster/login', ['as'=>'broadcasterLogin','uses'=>'Auth\AuthController@getLogin']);
 	Route::post('broadcaster/login', ['as'=>'postLoginBroadcaster','uses'=>'Auth\AuthController@postLogin']);
-Route::group(['prefix'=>'broadcaster','middleware'=>['authBroadcaster']], function()
+Route::group(['prefix'=>'broadcaster','middleware'=>['authBroadcaster','authBroadcasterResource']], function()
 {
 	Route::get('/', ['as'=>'broadcasterHome','uses'=>'broadcaster\HomeController@index']);
 	Route::get('profile', ['as'=>'broadcasterProfile','uses'=>'broadcaster\ProfileController@get']);
