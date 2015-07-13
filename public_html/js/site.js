@@ -20,3 +20,4 @@
 			}
 			window.location.href = route;
 		}
+	}
