@@ -23,7 +23,7 @@ class CreateBroadcastersRequest extends Request {
 	{
 		return [
 			'display_name'=>'required',
-			'company_name'=>'required'
+			'email'=>'email|required'
 		];
 	}
 
