@@ -6,6 +6,7 @@ use Broadcasters\Providers\BroadcasterServiceProvider as Provider;
 use Broadcasters\Providers\ServicesServiceProvider as ServicesServiceProvider;
 
 use App\Http\Requests\CreateBroadcastersRequest;
+use App\Http\Requests\UpdateBroadcastersRequest;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\CreateConfigRequest;
@@ -36,6 +37,7 @@ class BroadcasterController extends MyBaseController {
 	public function store(CreateBroadcastersRequest $request)
 	{
 		$this->broadcaster->save($request);
+		return \Redirect::route('broadcasterList')->withSuccess("Broadcaster Created");		
 	}
 
 	public function edit($id)
@@ -45,7 +47,7 @@ class BroadcasterController extends MyBaseController {
 		return view('admin/broadcaster/edit',compact('broadcaster','services'));	
 	}
 
-	public function update($id, CreateBroadcastersRequest $request)
+	public function update($id, UpdateBroadcastersRequest $request)
 	{
 		$this->broadcaster->update($request, $id);
 

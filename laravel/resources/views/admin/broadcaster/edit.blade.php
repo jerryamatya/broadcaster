@@ -21,7 +21,8 @@
   ?>       
   <label>Choose Services</label>
   @foreach($services as $id=>$name)
-  <?php $checked = in_array($id, $bservices) ? true : false;
+  <?php 
+  $checked = in_array($id, $bservices->toArray()) ? true : false;
   ?>
   <input type="checkbox" class="form" value="<?php echo $id;?>" name="services[]" @if($checked) checked='checked' @endif>
   {{ $name }}
