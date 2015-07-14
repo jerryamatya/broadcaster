@@ -17,6 +17,7 @@
   </div>
   <div class="form-group">
           {!!Form::label('Videos Count')!!}
+          {!! Form::text('cod[count][playlist]',isset($cod['count']['playlist'])?$cod['count']['playlist']:null,['class'=>'form-control','placeholder'=>'Playlist'])!!}
           {!! Form::text('cod[count][latest]',$cod['count']['latest'],['class'=>'form-control','placeholder'=>'Latest'])!!}
           {!! Form::text('cod[count][featured]',$cod['count']['featured'],['class'=>'form-control','placeholder'=>'Featured'])!!}
           {!! Form::text('cod[count][popular]',$cod['count']['popular'],['class'=>'form-control','placeholder'=>'Popular'])!!}

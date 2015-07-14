@@ -16,6 +16,7 @@
   </div>
   <div class="form-group">
           {!!Form::label('Videos Count')!!}
+          {!! Form::text('cod[count][playlist]',null,['class'=>'form-control','placeholder'=>'Playlist'])!!}
           {!! Form::text('cod[count][latest]',null,['class'=>'form-control','placeholder'=>'Latest'])!!}
           {!! Form::text('cod[count][featured]',null,['class'=>'form-control','placeholder'=>'Featured'])!!}
           {!! Form::text('cod[count][popular]',null,['class'=>'form-control','placeholder'=>'Popular'])!!}

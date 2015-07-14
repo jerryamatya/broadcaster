@@ -52,7 +52,7 @@ class VodServiceProvider extends BaseServiceProvider{
 		$cod = serialize($request->get('cod'));
 
 		try{
-			$this->model->create(compact('broadcaster_id','cod','validTime','urlTokenKey'));
+			$this->model->create(compact('broadcaster_id','cod'));
 		}
 		catch(\Exception $e){
 
