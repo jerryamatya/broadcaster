@@ -19,7 +19,7 @@ class NewsBlogController extends \App\Http\Controllers\api\ApiController {
 	{
 		$news= $this->service->getLimitedWithBroadcasterId($id,$limit);
 		if(!$news->count()){
-			return $this->respondNotFound('Channel not found.');
+			return $this->respondNotFound('NewsBlog not found.');
 		}
 		return $this->respond([
 				'data'=>$this->transformer->transformCollection($news->toArray())

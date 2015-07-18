@@ -13,7 +13,7 @@ class NewsBlog extends BaseModel{
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['title', 'body', 'excerpt', 'slug','img','cdn_source'];
+	protected $fillable = ['title', 'body', 'excerpt', 'slug','img','broadcaster_id'];
 
 
 
