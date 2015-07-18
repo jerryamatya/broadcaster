@@ -47,6 +47,14 @@ class Broadcaster extends BaseModel{
 	{
 		return $this->belongsToMany('Broadcasters\Models\Service','broadcasters_to_services','broadcaster_id','service_id');
 	}
+	public function vods()
+	{
+		return $this->hasMany('Broadcasters\Models\Vod','broadcaster_id');
+	}
+	public function news()
+	{
+		return $this->hasMany('Broadcasters\Models\NewsBlog','broadcaster_id');
+	}	
 	public function newsapps(){
 		return $this->hasMany('Broadcasters\Models\NewsApp','broadcaster_id');		
 	}

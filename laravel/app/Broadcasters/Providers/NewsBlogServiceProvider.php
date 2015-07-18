@@ -19,7 +19,11 @@ class NewsBlogServiceProvider  extends BaseServiceProvider {
 	{
 		return $this->model->findOrFail($id);
 	}
-
+	public function getByBroadcaster($broadcaster_id=null)
+	{
+		$broadcaster_id = $broadcaster_id?$broadcaster_id:\Auth::user()->broadcaster->id;
+		return $this->model->where("broadcaster_id","=",$broadcaster_id)->paginate(10);
+	}
 	public function getByIdWithData($id)
 	{
 		return $this->model->with(['broadcaster'])->where('id',$id)->first();

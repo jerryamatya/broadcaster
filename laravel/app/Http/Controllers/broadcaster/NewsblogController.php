@@ -25,7 +25,7 @@ class NewsblogController extends MyBaseController {
 
 	public function index()
 	{
-		$articles = $this->service->getAll();
+		$articles = $this->service->getByBroadcaster();
 		return view('broadcaster.newsblog.index')->with('articles',$articles);
 	}
 	public function show($id)

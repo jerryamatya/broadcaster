@@ -53,7 +53,7 @@ class BroadcasterDashboardServiceProvider {
 					$data[$service->id] = $this->newsBlogServiceProvider->getBroadcasterRecentServicesByCount(5,$this->broadcaster->id);	
 					break;
 				case 'Vod':
-					$data[$service->id] = $this->vodServiceProvider->getBroadcasterRecentServicesByCount(2,$this->broadcaster->id);	
+					$data[$service->id] = $this->vodServiceProvider->getBroadcasterRecentServicesByCount(2,$this->broadcaster->id);
 					break;													
 				default:
 					# code...

@@ -45,12 +45,10 @@ class ProfileServiceProvider {
 			$success = true;
 		}
 		catch(\Exception $e){
-			dd($e);
+						\DB::rollback();
 		}
 		if ($success) {
 			\DB::commit();
-		} else {
-			\DB::rollback();
 		}			
 	}
 

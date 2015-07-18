@@ -18,8 +18,7 @@ class EpgServiceProvider {
 
 	public function save($id, $request)
 	{
-				$epg = $this->model->findOrFail($id);
-
+		$epg = $this->model->findOrFail($id);
 		$epg->name = trim($request->get('name'));
 		$epg->details = trim($request->get('details'));
 		$epg->active = trim($request->get('active'));
