@@ -21,7 +21,8 @@
 <link rel='stylesheet' href="{{asset('css/bootstrap.min.css')}}">
 <link rel='stylesheet' href="{{asset('css/flat-ui.min.css')}}">
 <!-- Optional theme -->
-<link rel='stylesheet' href="{{asset('assets/css/style.css')}}"> 
+<link rel='stylesheet' href="{{asset('assets/css/style.css')}}">
+<link rel='stylesheet' href="{{asset('assets/css/bstyle.css')}}">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,5 +74,5 @@
     </nav>
 
 
-    <div class="container">
+    <div class="container holder">
     @include('broadcaster.partials.success')

@@ -1,0 +1,71 @@
+body{
+	background: #eee;
+
+/* IE10+ */ 
+background-image: -ms-linear-gradient(bottom right, #ffffff 0%, #F6F6F6 47%, #ededed 100%);
+
+/* Mozilla Firefox */ 
+background-image: -moz-linear-gradient(bottom right, #ffffff 0%, #F6F6F6 47%, #ededed 100%);
+
+/* Opera */ 
+background-image: -o-linear-gradient(bottom right, #ffffff 0%, #F6F6F6 47%, #ededed 100%);
+
+/* Webkit (Safari/Chrome 10) */ 
+background-image: -webkit-gradient(linear, right bottom, left top, color-stop(0, #ffffff), color-stop(47, #F6F6F6), color-stop(100, #ededed));
+
+/* Webkit (Chrome 11+) */ 
+background-image: -webkit-linear-gradient(bottom right, #ffffff 0%, #F6F6F6 47%, #ededed 100%);
+
+/* W3C Markup */ 
+background-image: linear-gradient(to top left, #ffffff 0%, #F6F6F6 47%, #ededed 100%);
+
+   background-repeat: no-repeat;
+    background-attachment: fixed;
+        
+}
+p{
+	line-height: 0.6;
+}
+
+.login-container{
+margin: 170px auto 20px auto;
+width: 300px;
+  background: #fff;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  -moz-box-shadow: 0 0 6px #999; /* firefox 3.5+ */
+        -webkit-box-shadow: 0 0 6px #999; /* webkit */
+        box-shadow: 0 0 6px #999;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999')"; /* IE 8+ */
+        filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999'); /* IE < = 7 */
+}
+.login-container .panel-body{
+	padding-top: 30px;
+}
+.login-container p.lead{
+	line-height: 0.6;
+	font-weight: bold;
+}
+.login-label{
+	font-size: 16px;
+}
+.pwd-group{
+	margin-bottom: 5px;
+}
+.checkbox input{
+	margin-top: -1px;
+}
+.checkbox{
+	font-size: 12px;
+}
+.signup-link,.reset-link{
+	text-decoration: underline;
+}
+.navbar-fixed-bottom{
+	background: #eee;
+}
+.navbar-fixed-bottom p{
+	margin:20px 0;
+}
