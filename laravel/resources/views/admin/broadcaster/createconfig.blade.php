@@ -8,21 +8,21 @@
 	<h3>Add Code</h3>	
 	<div class="form-group col-md-6">
 		<label>Banner Add Code Id(android)</label>
-			<input type="text" class="form-control" name="config[android]['addcode'][banneraddkey]" value="{{ old('config[android]['addcode'][banneraddkey]') }}">
+			<input type="text" class="form-control" name="config[android][addcode][banneraddkey]" value="{{ old('config[android][addcode][banneraddkey]') }}">
 	</div>
 
 	<div class="form-group col-md-6">
 		<label>Interestitial Add Code Id(android)</label>
-			<input type="text" class="form-control" name="config[android]['addcode'][interestitialaddkey]" value="{{ old('config[android]['addcode'][interestitialaddkey]') }}">
+			<input type="text" class="form-control" name="config[android][addcode][interestitialaddkey]" value="{{ old('config[android][addcode][interestitialaddkey]') }}">
 	</div>
 	<div class="form-group col-md-6">
 		<label>Banner Add Code Id(ios)</label>
-			<input type="text" class="form-control" name="config[ios]['addcode'][banneraddkey]" value="{{ old('config[ios]['addcode'][banneraddkey]') }}">
+			<input type="text" class="form-control" name="config[ios][addcode][banneraddkey]" value="{{ old('config[ios][addcode][banneraddkey]') }}">
 	</div>
 
 	<div class="form-group col-md-6">
 		<label>Interestitial Add Code Id(ios)</label>
-			<input type="text" class="form-control" name="config[ios]['addcode'][interestitialaddkey]" value="{{ old('config[android]['addcode'][interestitialaddkey]') }}">
+			<input type="text" class="form-control" name="config[ios][addcode][interestitialaddkey]" value="{{ old('config[android][addcode][interestitialaddkey]') }}">
 	</div>	
 	<div class="col-md-12">
 		<div class="form-group">
