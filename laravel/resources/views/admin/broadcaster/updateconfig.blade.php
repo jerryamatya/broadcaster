@@ -9,15 +9,24 @@
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div class="row-fluid">
 
-	<div class="form-group col-md-12">
-		<label>Banner Add Code Id</label>
-			<input type="text" class="form-control" name="config[banneraddkey]" value="{{$config['banneraddkey']}}">
+	<div class="form-group col-md-6">
+		<label>Banner Add Code Id(android)</label>
+			<input type="text" class="form-control" name="config[android][addcode][banneraddkey]" value="{{$config['android']['addcode']['banneraddkey'] or ""}}">
 	</div>
 
-	<div class="form-group col-md-12">
-		<label>Interestitial Add Code Id</label>
-			<input type="text" class="form-control" name="config[interestitialaddkey]" value="{{$config['interestitialaddkey']}}">
+	<div class="form-group col-md-6">
+		<label>Interestitial Add Code Id(android)</label>
+			<input type="text" class="form-control" name="config[android][addcode][interestitialaddkey]" value="{{$config['android']['addcode']['interestitialaddkey'] or ""}}">
 	</div>
+	<div class="form-group col-md-6">
+		<label>Banner Add Code Id(ios)</label>
+			<input type="text" class="form-control" name="config[ios][addcode][banneraddkey]" value="{{$config['ios']['addcode']['banneraddkey'] or ""}}">
+	</div>
+
+	<div class="form-group col-md-6">
+		<label>Interestitial Add Code Id(ios)</label>
+			<input type="text" class="form-control" name="config[ios][addcode][interestitialaddkey]" value="{{$config['ios']['addcode']['interestitialaddkey'] or ""}}">
+	</div>	
 	<div class="col-md-12">
 		<div class="form-group">
 			{!!Form::submit('Save',['class'=>'btn btn-primary'])!!}

@@ -10,6 +10,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	use Authenticatable, CanResetPassword;
 
+	protected $user,$broadcaster;
+
+	function __construct() {
+		//$this->user = \Auth::check()?\Auth::user:null;
+	}
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -71,6 +77,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function broadcaster()
 	{
 		return $this->belongsTo('Broadcasters\Models\Broadcaster', 'id','user_id');
+	}
+
+	public function getAuthUser()
+	{
+		
 	}
 
 }

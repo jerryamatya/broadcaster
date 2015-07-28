@@ -96,6 +96,9 @@ class BroadcastersController extends \App\Http\Controllers\api\ApiController {
 		\Broadcasters\Providers\ChannelServiceProvider $channelService,
 		\Broadcasters\Providers\VodServiceProvider $vodService)
 	{
+		$platform = \Request::get('platform');
+		if($platform !="ios" && $platform !="android")
+				return $this->respondNotFound('No config for this platform');
 		$broadcaster = $this->broadcaster->getWithConfig($id);
 		if(!$broadcaster){
 			$infoResponse =  $this->notFoundMessage('No data available.');
@@ -104,7 +107,7 @@ class BroadcastersController extends \App\Http\Controllers\api\ApiController {
 		else{
 			$infoResponse= $this->transformer->transform($broadcaster);
 			$configTransformer = new \Broadcasters\Transformers\ConfigTransformer();
-			$configResponse = $configTransformer->transform($broadcaster->config);	
+			$configResponse = $configTransformer->setPlatform($platform)->transform($broadcaster->config);	
 		}
 
 

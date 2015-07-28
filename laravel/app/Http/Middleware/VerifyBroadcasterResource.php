@@ -61,10 +61,6 @@ class VerifyBroadcasterResource {
 					]
 					], 401);
 			}
-
-
-			
-
 		}
 
 		return $next($request);

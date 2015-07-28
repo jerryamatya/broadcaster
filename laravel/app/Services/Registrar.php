@@ -21,6 +21,8 @@ class Registrar implements RegistrarContract {
 		]);
 	}
 
+	
+
 	/**
 	 * Create a new user instance after a valid registration.
 	 *
