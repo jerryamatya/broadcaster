@@ -94,11 +94,13 @@ class BroadcastersController extends \App\Http\Controllers\api\ApiController {
 
 	public function getData($id, 
 		\Broadcasters\Providers\ChannelServiceProvider $channelService,
-		\Broadcasters\Providers\VodServiceProvider $vodService)
+		\Broadcasters\Providers\VodServiceProvider $vodService
+		)
 	{
 		$platform = \Request::get('platform');
-		if($platform !="ios" && $platform !="android")
-				return $this->respondNotFound('No config for this platform');
+		if($platform !="ios" && $platform !="android"){
+			$configResponse = $this->notFoundMessage('No config for this platform.');
+		}
 		$broadcaster = $this->broadcaster->getWithConfig($id);
 		if(!$broadcaster){
 			$infoResponse =  $this->notFoundMessage('No data available.');
@@ -132,11 +134,25 @@ class BroadcastersController extends \App\Http\Controllers\api\ApiController {
 
 		}
 
+		$newsAppApiSources = $this->broadcaster->getNewsAppWithApiSources($id);
+
+		if(!$newsAppApiSources){
+			$newsAppApiResponse =  $this->notFoundMessage('No data available.');
+
+		}
+		else
+		{
+			$newsAppTransformer = new \Broadcasters\Transformers\NewsAppTransformer();
+			$newsAppApiResponse = $newsAppTransformer->transformCollection($newsAppApiSources);
+
+		}
+
 		$response = [
 			'info'=>$infoResponse,
 			'config'=>$configResponse,
 			"channels"=>$channelResponse,
 			"vod"=>$vodResponse,
+			"newsappapisources"=>$newsAppApiResponse
 		];
 			return $this->respond($response);	
 	}
