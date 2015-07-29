@@ -23,7 +23,7 @@
 
   <!--<link rel='stylesheet' href="{{asset('css/flat-ui.min.css')}}">-->
   <!-- Optional theme -->
-  <link rel='stylesheet' href="{{asset('assets/css/style.css')}}">
+  <link rel='stylesheet' href="{{asset('assets/css/bstyle.css')}}">
   <link rel='stylesheet' href="{{asset('assets/css/sidenav.css')}}">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -35,10 +35,8 @@
       @yield('head')
     </head>
     <body>
-
-      <!-- Static navbar -->
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+             <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">Toggle navigation</span>
@@ -49,101 +47,87 @@
 
             <a class="navbar-brand" href="{{route('broadcasterHome')}}">Broadcasters</a>
           </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="dropdown {{setActive('/services')}}">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Services <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  {!!getBroadcasterServicesNav($cbs_services)!!}
-                </ul>
-              </li>
-            </ul>
-            {{\Auth::user()->broadcaster->display_name|\Auth::user()->broadcaster->display_name}}
-            <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li class="{{setActive('/profile')}}"><a href="{{route('broadcasterProfile')}}">profile</a></li>
-                  <li>
-                    <a href="{{route('logout')}}">logout</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
+        <div class="collapse navbar-collapse">
+        <p class="navbar-text pull-right" style="">{{ucwords(\Auth::user()->broadcaster->display_name)|ucwords(\Auth::user()->broadcaster->display_name)}}</p>
         </div>
+        </div>
+
+
       </nav>
+      @include('broadcaster.partials.success')
+      <div class="row menuwrapper">
+        <!-- uncomment code for absolute positioning tweek see top comment in css -->
+        <!-- <div class="absolute-wrapper"> </div> -->
+        <!-- Menu -->
+        <div class="side-menu">
 
+          <nav class="navbar navbar-default" role="navigation">
+            <!-- Main Menu -->
+            <div class="side-menu-container">
+              <ul class="nav navbar-nav">
 
-      <div class="container-fluid">
-              @include('broadcaster.partials.success')
-<div class="row">
-<div class="col-md-4 nopadding">
-        <div class="nav-side-menu">
-          <div class="brand">Brand Logo</div>
-          <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-
-          <div class="menu-list">
-
-            <ul id="menu-content" class="menu-content collapse out">
-              <li>
-                <a href="#">
-                  <i class="fa fa-dashboard fa-lg"></i> Dashboard
-                </a>
-              </li>
-
-              <li  data-toggle="collapse" data-target="#products" class="collapsed active">
-                <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
-              </li>
-              <ul class="sub-menu collapse" id="products">
-                <li class="active"><a href="#">CSS3 Animation</a></li>
-                <li><a href="#">General</a></li>
-                <li><a href="#">Buttons</a></li>
-                <li><a href="#">Tabs & Accordions</a></li>
-                <li><a href="#">Typography</a></li>
-                <li><a href="#">FontAwesome</a></li>
-                <li><a href="#">Slider</a></li>
-                <li><a href="#">Panels</a></li>
-                <li><a href="#">Widgets</a></li>
-                <li><a href="#">Bootstrap Model</a></li>
+                <li class="{{setBroadcasterActive('/')}}"><a href="{{route('broadcasterHome')}}"><span class="glyphicon glyphicon-home"></span> Dashboard</a></li>
+                <!-- Dropdown-->
+                <li>
+                  <a data-toggle="collapse" href="#dropdown-services">
+                    <span class="glyphicon glyphicon-globe"></span> Services <span class="caret"></span>
+                  </a>
+                  <!-- Dropdown level 1 -->
+                  <div id="dropdown-services" class="panel-collapse collapse {{getCollapse($cbs_services)}}">
+                    <div class="">
+                      <ul class="nav navbar-nav">
+                        {!!getBroadcasterServicesNav($cbs_services)!!}  
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <a data-toggle="collapse" href="#dropdown-user">
+                    <span class="glyphicon glyphicon-user"></span> User <span class="caret"></span>
+                  </a>
+                  <!-- Dropdown level 1 -->
+                  <div id="dropdown-user" class="panel-collapse collapse {{setActive('/profile')?'in':''}}">
+                    <div class="">
+                      <ul class="nav navbar-nav">
+                       <li class="{{setActive('/profile')}}"><a href="{{route('broadcasterProfile')}}">profile</a></li>
+                       <li>
+                        <a href="{{route('logout')}}">logout</a>
+                      </li                      </ul>
+                    </div>
+                  </div>                  
+                </li>
               </ul>
+            </div><!-- /.navbar-collapse -->
+          </nav>
 
-
-              <li data-toggle="collapse" data-target="#service" class="collapsed">
-                <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
-              </li>  
-              <ul class="sub-menu collapse" id="service">
-                <li>New Service 1</li>
-                <li>New Service 2</li>
-                <li>New Service 3</li>
-              </ul>
-
-
-              <li data-toggle="collapse" data-target="#new" class="collapsed">
-                <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
-              </li>
-              <ul class="sub-menu collapse" id="new">
-                <li>New New 1</li>
-                <li>New New 2</li>
-                <li>New New 3</li>
-              </ul>
-
-
-              <li>
-                <a href="#">
-                  <i class="fa fa-user fa-lg"></i> Profile
-                </a>
-              </li>
-
-              <li>
-                <a href="#">
-                  <i class="fa fa-users fa-lg"></i> Users
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
-</div>
-<div class="col-md-8">
+
+      </div>
+      @section('foot')
+      <script>
+        $(function () {
+          $('.navbar-toggle').click(function () {
+            $('.navbar-nav').toggleClass('slide-in');
+            $('.side-body').toggleClass('body-slide-in');
+            $('#search').removeClass('in').addClass('collapse').slideUp(200);
+
+        /// uncomment code for absolute positioning tweek see top comment in css
+        //$('.absolute-wrapper').toggleClass('slide-in');
+        
+      });
+
+   // Remove menu for searching
+   $('#search-trigger').click(function () {
+    $('.navbar-nav').removeClass('slide-in');
+    $('.side-body').removeClass('body-slide-in');
+
+        /// uncomment code for absolute positioning tweek see top comment in css
+        //$('.absolute-wrapper').removeClass('slide-in');
+
+      });
+ });
+      </script>
+      @stop
+      <!-- Main Content -->
+      <div class="container-fluid">
+        <div class="side-body">

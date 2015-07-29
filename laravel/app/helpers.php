@@ -12,7 +12,7 @@ function setActive($path, $active="active")
 function setBroadcasterActive($path, $active="active")
 {
 	if($path=="/")
-		return Request::is($path) ?$active:"";
+		return URL::route('broadcasterHome') === URL::current() ?$active:"";
 	$path = "broadcaster".$path;
 	return Request::is($path.'*') ?$active:"";
 
@@ -37,6 +37,14 @@ function getBroadcasterServicesNav($services)
 		$items .= '<li class="'.$active.'"><a href="'.getServiceLink($service->name).'">'.$service->name.'</a></li>';
 	}
 	return $items;
+}
+function getCollapse($services){
+	foreach($services as $service){
+		$active = setBroadcasterActive(getBroadcasterServiceSlug($service->name));
+		if($active)
+			return "in";
+	}
+	return "";
 }
 
 function getServiceSlug($name)
