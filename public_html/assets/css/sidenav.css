@@ -188,6 +188,7 @@ border-top: 1px solid #e7e7e7;
 /* Main body section */
 .side-body {
   margin-left: 310px;
+  margin-top: 5px;
 }
 /* small screen */
 @media (max-width: 768px) {

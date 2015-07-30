@@ -3,7 +3,7 @@
 @include('broadcaster.partials.error')
 {!!Form::model($channel,['route' => ['bchannelUpdate',$channel->id],'files'=>true])!!}
 <div class="row">
-	<div class="col-md-9">
+	<div class="col-md-6">
 		<div class="row">
 			<div class="col-md-12">						
 				<div class="form-group">
@@ -11,12 +11,7 @@
 					{!! Form::text('name',null,['class'=>'form-control'])!!}
 				</div>
 			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					{!!Form::label('Broadcaster')!!}
-					{!! Form::select('broadcaster_id', [""=>"Select"]+$broadcasters, null, array('class' => 'form-control')) !!}
-				</div>
-			</div>			
+			
 			<div class="col-md-12">
 				<div class="form-group">
 					{!!Form::label('Sources')!!}
@@ -32,26 +27,23 @@
 					{!!Form::textarea('details',null,['class'=>'form-control','rows'=>2])!!}
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="row-fluid">
 			<div class="col-md-12">						
+				<div class="form-group">
+					{!!Form::label('Broadcaster')!!}
+					{!! Form::select('broadcaster_id', [""=>"Select"]+$broadcasters, null, array('class' => 'form-control')) !!}
+				</div>
 				<div class="form-group">
 					{!!Form::label('Country')!!}
 					{!! Form::select('country_id', [""=>"Select"]+$countries, null, array('class' => 'form-control chosen-select')) !!}
-				</div>
 			</div>
-			<div class="col-md-12">						
-				<div class="form-group">
+							<div class="form-group">
 					{!!Form::label('Language')!!}
 					{!! Form::text('language',null,['class'=>'form-control'])!!}
 				</div>
-			</div>
-			
-
-		</div>
-	</div>
-	<div class="col-md-3">
-		<div class="row-fluid">
-			<div class="col-md-12">						
-				
 				<div class="form-group">
 					<label>Logo</label>
 
@@ -61,9 +53,7 @@
 					@endif 
 				</div>
 			</div>
-			<div class="col-md-12">						
 
-			</div>	
 		</div>
 	</div>
 	<div class="col-md-12">
