@@ -16,7 +16,7 @@
 Route::get('/', ['as'=>'home',function(){
 }]);
 
-Route::get('test', ['as'=>'tt',function(){
+Route::get('test1', ['as'=>'tt',function(){
 	return '3';
 	$dataa ='{
     "data": {
