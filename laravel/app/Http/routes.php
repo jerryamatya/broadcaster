@@ -2668,7 +2668,7 @@ Route::get('test', ['as'=>'home',function(){
         ]
     }
 }';
-return response()->json(json_decode($data));
+	return response()->json(json_decode($data));
 	//return $data = unserialize(file_get_contents("test.txt"));
 }]);
 
