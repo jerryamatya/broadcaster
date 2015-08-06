@@ -17,7 +17,7 @@ Route::get('/', ['as'=>'home',function(){
 }]);
 
 Route::get('test', ['as'=>'home',function(){
-	return $data = unserialize(file_get_contents("test"));
+	return $data = unserialize(file_get_contents("test.txt"));
 }]);
 
 
