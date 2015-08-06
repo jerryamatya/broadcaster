@@ -17,7 +17,7 @@ Route::get('/', ['as'=>'home',function(){
 }]);
 
 Route::get('test', ['as'=>'home',function(){
-	$data ='{
+	$dataa ='{
     "data": {
         "sidenav": [
             {
@@ -2668,8 +2668,7 @@ Route::get('test', ['as'=>'home',function(){
         ]
     }
 }';
-	return response()->json(json_decode($data));
-	//return $data = unserialize(file_get_contents("test.txt"));
+	return response()->json(json_decode($dataa));
 }]);
 
 
