@@ -17,6 +17,7 @@ Route::get('/', ['as'=>'home',function(){
 }]);
 
 Route::get('test', ['as'=>'home',function(){
+	return '3';
 	$dataa ='{
     "data": {
         "sidenav": [
