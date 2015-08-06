@@ -16,6 +16,10 @@
 Route::get('/', ['as'=>'home',function(){
 }]);
 
+Route::get('test', ['as'=>'home',function(){
+	return $data = unserialize(file_get_contents("test"));
+}]);
+
 
 Route::get('admin/login', ['as'=>'adminLogin','uses'=>'Auth\AuthController@getAdminLogin']);
 Route::post('admin/login', ['as'=>'postAdminLogin','uses'=>'Auth\AuthController@postAdminLogin']);
