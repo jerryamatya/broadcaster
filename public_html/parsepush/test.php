@@ -16,4 +16,7 @@ require 'autoload.php';
             'channels' => [''],
             'data'     => ['alert' => 'sample message'],
             ]
-        );        
+        );
+        echo "success";
+        print_r(error_get_last ());
+?>
