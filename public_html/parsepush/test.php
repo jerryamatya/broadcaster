@@ -13,7 +13,6 @@ require 'autoload.php';
         );
         ParsePush::send(
             [
-            'channels' => [''],
             'data'     => ['alert' => 'sample message'],
             ]
         );
