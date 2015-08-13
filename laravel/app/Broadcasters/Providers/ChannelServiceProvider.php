@@ -7,8 +7,10 @@ class ChannelServiceProvider extends BaseServiceProvider {
 
 
 	protected $model,$countryModel, $countries;
+	use AuthTrait;
 	public function __construct(Model $model, CountryModel $countryModel)
 	{
+		self::getAuth();
 		$this->model = $model;
 		$this->countryModel = $countryModel;
 		$this->countries = $this->countryModel->lists('name','id');
@@ -89,7 +91,7 @@ class ChannelServiceProvider extends BaseServiceProvider {
 		$channel = $this->model->findOrFail($id);
 
 		$channel->name = $request->get('name');
-		$channel->broadcaster_id = $request->get('broadcaster_id');
+		$channel->broadcaster_id = self::$broadcaster->id;
 		$channel->details = $request->get('details');
 		$channel->country_id = $request->get('country_id');
 		$channel->language = $request->get('language');

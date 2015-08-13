@@ -2,6 +2,8 @@
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Parse\ParseClient;
+use Parse\ParsePush;
 
 class Kernel extends ConsoleKernel {
 
@@ -11,7 +13,7 @@ class Kernel extends ConsoleKernel {
 	 * @var array
 	 */
 	protected $commands = [
-		'App\Console\Commands\Inspire',
+	'App\Console\Commands\Inspire',
 	];
 
 	/**
@@ -23,7 +25,24 @@ class Kernel extends ConsoleKernel {
 	protected function schedule(Schedule $schedule)
 	{
 		$schedule->command('inspire')
-				 ->hourly();
+		->everyMinute();
+		$schedule->call(function(){
+			sendNotification('test notification 1');
+		})->dailyAt('17:00');
+	}
+
+	function sendNotification($msg){
+							ParseClient::initialize(
+           'fPSUGZ0H5wm7UPgcEYQ3EImEgv3HuidGeFXFDDJw',
+           '6VIhRzVVQN8oBsYjbZ2SYCmBzEqK4C499o4Q25KD',
+           'c6akmuK1fHz8RcYuwn6bh5EhaXvqeeZdezc6xbpj'
+        );					
+		ParsePush::send(
+            [
+            'channel'=>['broadcast'],
+            'data'     => ['alert' => $msg],
+            ]
+        );
 	}
 
 }

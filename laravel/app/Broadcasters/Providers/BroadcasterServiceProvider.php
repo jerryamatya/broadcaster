@@ -19,8 +19,10 @@ class BroadcasterServiceProvider extends BaseServiceProvider{
 	{
 		return $this->model->with('services')->findOrFail($id);
 	}	
-	public function getAll()
+	public function getAll($active = null)
 	{
+		if($active)
+			return $this->model->active()->get();//include inactive
 		return $this->model->all();//include inactive
 	}
 	public function getAllWithUsers()

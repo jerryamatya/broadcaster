@@ -31,11 +31,7 @@
 	</div>
 	<div class="col-md-6">
 		<div class="row-fluid">
-			<div class="col-md-12">						
-				<div class="form-group">
-					{!!Form::label('Broadcaster')!!}
-					{!! Form::select('broadcaster_id', [""=>"Select"]+$broadcasters, null, array('class' => 'form-control')) !!}
-				</div>
+			<div class="col-md-12">
 				<div class="form-group">
 					{!!Form::label('Country')!!}
 					{!! Form::select('country_id', [""=>"Select"]+$countries, null, array('class' => 'form-control chosen-select')) !!}

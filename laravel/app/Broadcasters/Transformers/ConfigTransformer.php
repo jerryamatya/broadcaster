@@ -7,7 +7,7 @@ class ConfigTransformer extends Transformer
 	protected $platform;
 
 	public  function transform($model){
-		if(!$model)
+		if(!$model || !$this->platform)
 			return null;
 		$config = unserialize($model->value);
 		return [
@@ -20,6 +20,4 @@ class ConfigTransformer extends Transformer
 		$this->platform = $platform;
 		return $this;
 	}
-
-
 }

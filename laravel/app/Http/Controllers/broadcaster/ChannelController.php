@@ -6,6 +6,7 @@ use Broadcasters\Providers\ChannelServiceProvider as Provider;
 use Broadcasters\Providers\CountryServiceProvider as CountryServiceProvider;
 use Broadcasters\Providers\BroadcasterServiceProvider as BroadcasterServiceProvider;
 use App\Http\Requests\CreateChannelRequest;
+use App\Http\Requests\UpdatebChannelRequest;
 
 
 class ChannelController extends MyBaseController {
@@ -59,7 +60,7 @@ class ChannelController extends MyBaseController {
 		$channel = $this->channel->getById($id);
 		return view('broadcaster/channel/edit',compact('channel','countries','broadcasters'));	
 	}
-	public function update($id, CreateChannelRequest $request)
+	public function update($id, UpdatebChannelRequest $request)
 	{
 		$this->channel->bupdate($request, $id);
 		return \Redirect::route('bchannelList')->withSuccess("Channel Updated");
