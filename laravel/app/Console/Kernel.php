@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel {
             ]
         );
         \Log::info(error_get_last ());
-		})->dailyAt('7:60');
+		})->dailyAt('8:02');
 	}
 
 	function sendNotification($msg){
