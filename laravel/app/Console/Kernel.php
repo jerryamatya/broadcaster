@@ -2,8 +2,8 @@
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Parse\ParseClient;
-use Parse\ParsePush;
+use Parse\ParseClient as ParseClient;
+use Parse\ParsePush as ParsePush;
 
 class Kernel extends ConsoleKernel {
 
@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel {
 		->hourly();
 		$schedule->call(function(){
 			sendNotification('test notification 1');
-		})->dailyAt('7:30');
+		})->dailyAt('7:36');
 	}
 
 	function sendNotification($msg){
