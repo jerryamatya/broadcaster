@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel {
 			foreach($types as $typeId):
 			$not_data =[];
 				if($typeId=="news"){
-					$not_data = ['newsId'=>600];
+					$not_data = ['newsId'=>655];
 				}
 			ParsePush::send(array(
 				"where" => $query,
@@ -53,7 +53,7 @@ class Kernel extends ConsoleKernel {
 			endforeach;
 
 			\Log::info(error_get_last ());
-		})->dailyAt('11:04');
+		})->dailyAt('11:14');
 	}
 
 	function sendNotification($msg){
