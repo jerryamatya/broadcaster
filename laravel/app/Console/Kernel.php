@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel {
 		->hourly();
 		$schedule->call(function(){
 			sendNotification('test notification 1');
-		})->dailyAt('3:15');
+		})->dailyAt('7:30');
 	}
 
 	function sendNotification($msg){
