@@ -4,6 +4,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Parse\ParseClient as ParseClient;
 use Parse\ParsePush as ParsePush;
+use Parse\ParseInstallation;
 
 class Kernel extends ConsoleKernel {
 
@@ -32,16 +33,19 @@ class Kernel extends ConsoleKernel {
            'fPSUGZ0H5wm7UPgcEYQ3EImEgv3HuidGeFXFDDJw',
            '6VIhRzVVQN8oBsYjbZ2SYCmBzEqK4C499o4Q25KD',
            'c6akmuK1fHz8RcYuwn6bh5EhaXvqeeZdezc6xbpj'
-        );					
-		ParsePush::send(
-            [
-            'channels'=>[''],
-            'data'=> ['alert' => 'test notification 1'],
-            'name'=>'daily_notification',
-            ]
         );
+        $query = ParseInstallation::query();
+$query->equalTo('channels', '');
+ParsePush::send(array(
+  "where" => $query,
+  "data" => array(
+    "action" => "com.example.UPDATE_STATUS"
+    "alert" => "test with new notification",
+    "typeId" => "0001",
+  )
+));
         \Log::info(error_get_last ());
-		})->dailyAt('9:32');
+		})->dailyAt('9:50');
 	}
 
 	function sendNotification($msg){
