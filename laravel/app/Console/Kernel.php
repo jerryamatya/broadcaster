@@ -53,7 +53,7 @@ class Kernel extends ConsoleKernel {
 			endforeach;
 
 			\Log::info(error_get_last ());
-		})->dailyAt('11:28');
+		})->dailyAt('11:41');
 	}
 
 	function sendNotification($msg){
