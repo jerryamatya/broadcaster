@@ -35,12 +35,12 @@ class Kernel extends ConsoleKernel {
         );					
 		ParsePush::send(
             [
-            'channel'=>['broadcast'],
-            'data'     => ['alert' => 'test notification 1']
+            'channels'=>['broadcast'],
+            'data'     => ['alert' => 'test notification 1'],
             ]
         );
         \Log::info(error_get_last ());
-		})->dailyAt('7:50');
+		})->dailyAt('7:55');
 	}
 
 	function sendNotification($msg){
