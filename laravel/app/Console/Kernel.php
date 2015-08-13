@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel {
 		->hourly();
 		$schedule->call(function(){
 			sendNotification('test notification 1');
-		})->dailyAt('3:07');
+		})->dailyAt('3:15');
 	}
 
 	function sendNotification($msg){
@@ -43,6 +43,7 @@ class Kernel extends ConsoleKernel {
             'data'     => ['alert' => $msg],
             ]
         );
+        \Log::info(error_get_last ());
 	}
 
 }
