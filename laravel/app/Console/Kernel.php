@@ -39,7 +39,6 @@ $query->equalTo('channels', '');
 ParsePush::send(array(
   "where" => $query,
   "data" => array(
-    "action" => "com.example.UPDATE_STATUS"
     "alert" => "test with new notification",
     "typeId" => "0001",
   )
