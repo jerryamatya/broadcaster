@@ -25,10 +25,10 @@ class Kernel extends ConsoleKernel {
 	protected function schedule(Schedule $schedule)
 	{
 		$schedule->command('inspire')
-		->everyMinute();
+		->hourly();
 		$schedule->call(function(){
 			sendNotification('test notification 1');
-		})->dailyAt('17:00');
+		})->dailyAt('3:07');
 	}
 
 	function sendNotification($msg){
