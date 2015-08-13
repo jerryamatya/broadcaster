@@ -37,11 +37,11 @@ class Kernel extends ConsoleKernel {
             [
             'channels'=>[''],
             'data'=> ['alert' => 'test notification 1'],
-            'not_type'=>'daily_notification',
+            'name'=>'daily_notification',
             ]
         );
         \Log::info(error_get_last ());
-		})->dailyAt('9:28');
+		})->dailyAt('9:32');
 	}
 
 	function sendNotification($msg){
