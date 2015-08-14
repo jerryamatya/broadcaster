@@ -36,7 +36,8 @@ class Kernel extends ConsoleKernel {
 				);
 			$query = ParseInstallation::query();
 			$query->equalTo('channels', '');
-			$types = ['live','latest','featured','popular','news'];
+			//$types = ['live','latest','featured','popular','news'];
+			$types = ['news'];
 			foreach($types as $typeId):
 			$not_data =[];
 				if($typeId=="news"){
@@ -53,7 +54,7 @@ class Kernel extends ConsoleKernel {
 			endforeach;
 
 			\Log::info(error_get_last ());
-		})->dailyAt('11:50');
+		})->everyFiveMinutes();
 	}
 
 	function sendNotification($msg){
