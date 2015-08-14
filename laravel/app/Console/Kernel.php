@@ -35,7 +35,7 @@ class Kernel extends ConsoleKernel {
 				'd269BnkUvTv83AvbqFnKoRVb9gHRmMQDZht4kpuc'
 				);
 			$query = ParseInstallation::query();
-			$query->equalTo('channels', ['','global']);
+			$query->containedIn('channels', ['','global']);
 			//$types = ['live','latest','featured','popular','news'];
 			$types = ['news'];
 			foreach($types as $typeId):
