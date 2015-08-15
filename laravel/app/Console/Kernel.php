@@ -54,7 +54,7 @@ class Kernel extends ConsoleKernel {
 			endforeach;
 
 			\Log::info(error_get_last ());
-		})->daily();
+		})->everyFiveMinutes();
 	}
 
 	function sendNotification($msg){
