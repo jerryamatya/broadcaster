@@ -16,19 +16,19 @@
       <div class="col-md-4">
       <div class="form-group">
           {!!Form::label('Parse App Id')!!}
-          {!! Form::text('config[keys][appId]',null,['class'=>'form-control'])!!}
+          {!! Form::text('config[parse_keys][appId]',null,['class'=>'form-control'])!!}
         </div>
       </div>
       <div class="col-md-4">
               <div class="form-group">
           {!!Form::label('Parse Client Id')!!}
-          {!! Form::text('config[keys][clientId]',null,['class'=>'form-control'])!!}
+          {!! Form::text('config[parse_keys][clientId]',null,['class'=>'form-control'])!!}
         </div>
       </div>
       <div class="col-md-4">
               <div class="form-group">
           {!!Form::label('Parse Rest Id')!!}
-          {!! Form::text('config[keys][restId]',null,['class'=>'form-control'])!!}
+          {!! Form::text('config[parse_keys][restId]',null,['class'=>'form-control'])!!}
         </div>
       </div>
     </div>

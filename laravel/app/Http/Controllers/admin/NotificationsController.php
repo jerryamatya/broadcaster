@@ -4,6 +4,7 @@ use App\Http\Controllers\MyBaseController as MyBaseController;
 
 use Broadcasters\Providers\NotificationsServiceProvider as Provider;
 use Broadcasters\Providers\BroadcasterServiceProvider as BroadcasterServiceProvider;
+use Broadcasters\Providers\ConfigServiceProvider as ConfigServiceProvider;
 
 use App\Http\Requests\CreateNotificationsRequest;
 use App\Http\Requests\CreateNotificationsConfigRequest;
@@ -12,16 +13,16 @@ use App\Http\Requests\CreateNotificationsConfigRequest;
 class NotificationsController extends MyBaseController {
 	protected $broadcasterServiceProvider;
 	protected $provider;
-	function __construct(Provider $provider, BroadcasterServiceProvider $broadcasterServiceProvider) {
+	protected $configServiceProvider;
+	function __construct(Provider $provider, BroadcasterServiceProvider $broadcasterServiceProvider, ConfigServiceProvider $ConfigServiceProvider) {
 		$this->provider = $provider;
 		$this->broadcasterServiceProvider = $broadcasterServiceProvider;
+		$this->configServiceProvider = $ConfigServiceProvider;
 	}
 	public function index()
 	{
-		$broadcasters = $this->broadcasterServiceProvider->getAll(true);
-				//dd($broadcasters);
-
-		//dd($broadcasters->lists('display_name','id'));
+		$broadcasters = $this->broadcasterServiceProvider->get(true);
+		$configs = $this->configServiceProvider->getByKey('parse_keys_config');
 		$data = [
 			'broadcasters'
 		];
@@ -38,6 +39,7 @@ class NotificationsController extends MyBaseController {
 	}
 	public function configstore(CreateNotificationsConfigRequest $request)
 	{
-
+		$this->configServiceProvider->create($request,'parse_keys_config');
+		return redirect()->route('notificationsConfigList')->withSuccess('Notification Config Created');
 	}
 }

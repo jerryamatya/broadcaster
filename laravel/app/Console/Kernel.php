@@ -54,9 +54,8 @@ class Kernel extends ConsoleKernel {
 			endforeach;
 
 			\Log::info(error_get_last ());
-		})->everyFiveMinutes();
+		})->daily();
 	}
-
 	function sendNotification($msg){
 		ParseClient::initialize(
 			'fPSUGZ0H5wm7UPgcEYQ3EImEgv3HuidGeFXFDDJw',

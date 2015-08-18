@@ -37,7 +37,7 @@ Route::group(['prefix'=>'admin','before'=>'csrf','middleware'=>'auth'], function
 
     Route::get('notifications/list', ['as'=>'notificationsList','uses'=>'admin\NotificationsController@index']);
     Route::get('notifications/config', ['as'=>'notificationsConfigList','uses'=>'admin\NotificationsController@config']);
-    Route::get('notifications/configstore', ['as'=>'notificationsConfigStore','uses'=>'admin\NotificationsController@configstore']);
+    Route::post('notifications/configstore', ['as'=>'notificationsConfigStore','uses'=>'admin\NotificationsController@configstore']);
 
 
 
