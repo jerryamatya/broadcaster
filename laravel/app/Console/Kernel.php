@@ -51,11 +51,11 @@ class Kernel extends ConsoleKernel {
 		];
 		$notifications[] = [
 			'msg'=>"Coming up Prime Story at 5:30"
-			'time'=>"17:15"
+			'time'=>"17:22"
 			'type'=>'live'
 		];		
 		foreach($notifications as $notification):
-			$time = date("H:i", strtotime('285 minutes', strtotime($notification['time'])));
+			$time = date("H:i", strtotime('-285 minutes', strtotime($notification['time'])));
 			$schedule->call(function(){
 				//sendNotification('test notification 1');
 				ParseClient::initialize(
