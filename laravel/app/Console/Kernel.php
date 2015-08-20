@@ -27,35 +27,60 @@ class Kernel extends ConsoleKernel {
 	{
 		$schedule->command('inspire')
 		->hourly();
-		$schedule->call(function(){
-			//sendNotification('test notification 1');
-			ParseClient::initialize(
-				'ZBGNVDDcZJdilnPVkxTrXOe8U0ToWZcfWAqRTupN',
-				'bhtvPPoz8siyZO0RbS7sGYmvpusa8YubzxIi7Oa9',
-				'd269BnkUvTv83AvbqFnKoRVb9gHRmMQDZht4kpuc'
-				);
-			$query = ParseInstallation::query();
-			$query->containedIn('channels', ['','global']);
-			//$types = ['live','latest','featured','popular','news'];
-			$types = ['news'];
-			foreach($types as $typeId):
-			$not_data =[];
-				if($typeId=="news"){
-					$not_data = ['newsId'=>655];
-				}
-			ParsePush::send(array(
-				"where" => $query,
-				"data" => array(
-					"alert" => "test with new notification for tab ".$typeId,
-					"nitv_b_typeId" => $typeId,
-					"nitv_b_data"=>$not_data
-					)
-				));
-			endforeach;
 
-			\Log::info(error_get_last ());
-		})->daily();
+		$notifications = [];
+		$notifications[] = [
+			'msg'=>"Coming up Himalaya Fatafat"
+			'time'=>"11:58"
+			'type'=>'live'
+		];
+		$notifications[] = [
+			'msg'=>" Coming up Himalaya Prime News"
+			'time'=>"18:58"
+			'type'=>'live'
+		];
+		$notifications[] = [
+			'msg'=>"Coming up Prime Story"
+			'time'=>"19:28"
+			'type'=>'live'
+		];
+		$notifications[] = [
+			'msg'=>"Coming up Himalaya Fatafat"
+			'time'=>"19:58"
+			'type'=>'live'
+		];
+		$notifications[] = [
+			'msg'=>"Coming up Prime Story at 5:30"
+			'time'=>"17:15"
+			'type'=>'live'
+		];		
+		foreach($notifications as $notification):
+			$time = date("H:i", strtotime('285 minutes', strtotime($notification['time'])));
+			$schedule->call(function(){
+				//sendNotification('test notification 1');
+				ParseClient::initialize(
+					'ZBGNVDDcZJdilnPVkxTrXOe8U0ToWZcfWAqRTupN',
+					'bhtvPPoz8siyZO0RbS7sGYmvpusa8YubzxIi7Oa9',
+					'd269BnkUvTv83AvbqFnKoRVb9gHRmMQDZht4kpuc'
+					);
+				$query = ParseInstallation::query();
+				$query->containedIn('channels', ['','global']);
+				//$types = ['live','latest','featured','popular','news'];
+				$not_data =[];
+				ParsePush::send(array(
+					"where" => $query,
+					"data" => array(
+						"alert" => $notification['msg'],
+						"nitv_b_typeId" => $notification['type'],
+						"nitv_b_data"=>$not_data
+						)
+					));
+
+				\Log::info(error_get_last ());
+			})->dailyAt($time);
+		endforeach;
 	}
+	
 	function sendNotification($msg){
 		ParseClient::initialize(
 			'fPSUGZ0H5wm7UPgcEYQ3EImEgv3HuidGeFXFDDJw',
