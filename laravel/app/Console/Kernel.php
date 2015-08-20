@@ -30,28 +30,28 @@ class Kernel extends ConsoleKernel {
 
 		$notifications = [];
 		$notifications[] = [
-			'msg'=>"Coming up Himalaya Fatafat"
-			'time'=>"11:58"
+			'msg'=>"Coming up Himalaya Fatafat",
+			'time'=>"11:58",
 			'type'=>'live'
 		];
 		$notifications[] = [
-			'msg'=>" Coming up Himalaya Prime News"
-			'time'=>"18:58"
+			'msg'=>" Coming up Himalaya Prime News",
+			'time'=>"18:58",
 			'type'=>'live'
 		];
 		$notifications[] = [
-			'msg'=>"Coming up Prime Story"
-			'time'=>"19:28"
+			'msg'=>"Coming up Prime Story",
+			'time'=>"19:28",
 			'type'=>'live'
 		];
 		$notifications[] = [
-			'msg'=>"Coming up Himalaya Fatafat"
-			'time'=>"19:58"
+			'msg'=>"Coming up Himalaya Fatafat",
+			'time'=>"19:58",
 			'type'=>'live'
 		];
 		$notifications[] = [
-			'msg'=>"Coming up Prime Story at 5:30"
-			'time'=>"17:22"
+			'msg'=>"Coming up Prime Story at 5:30",
+			'time'=>"17:27",
 			'type'=>'live'
 		];		
 		foreach($notifications as $notification):
