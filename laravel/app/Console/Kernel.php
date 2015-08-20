@@ -31,29 +31,24 @@ class Kernel extends ConsoleKernel {
 		$notifications = [];
 		$notifications[] = [
 			'msg'=>"Coming up Himalaya Fatafat at 12:00",
-			'time'=>"11:58",
+			'time'=>"11:55",
 			'type'=>'live'
 		];
 		$notifications[] = [
 			'msg'=>" Coming up Himalaya Prime News at 7:00",
-			'time'=>"18:58",
+			'time'=>"18:55",
 			'type'=>'live'
 		];
 		$notifications[] = [
 			'msg'=>"Coming up Prime Story at 7:30",
-			'time'=>"19:28",
+			'time'=>"19:25",
 			'type'=>'live'
 		];
 		$notifications[] = [
 			'msg'=>"Coming up Himalaya Fatafat at 8:00",
-			'time'=>"19:58",
+			'time'=>"19:55",
 			'type'=>'live'
-		];
-		$notifications[] = [
-			'msg'=>"Coming up Prime Story at 5:45",
-			'time'=>"17:43",
-			'type'=>'live'
-		];		
+		];	
 		foreach($notifications as $notification):
 			$time = date("H:i", strtotime('-345 minutes', strtotime($notification['time'])));
 			$schedule->call(function() use ($notification){
