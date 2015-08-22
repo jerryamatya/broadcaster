@@ -34,10 +34,10 @@
 
 <div class="col-md-12">
   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <?php
+    <?php
     $schedule = unserialize($epg->schedule);
     $days = [1,2,3,4,5,6,7];
-  ?>
+    ?>
     @if (true)
     @foreach($days as $i)
     {{-- Start Panel --}}
@@ -50,7 +50,7 @@
         </h4>
       </div>
       <div id="collapseOne{{$i}}" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="headingOne{{$i}}">
-        <div class="panel-body">
+        <div class="panel-body epg-body">
           <div class="row">
             <div class="col-md-12 sortable">
               <div class="row-fluid">
@@ -60,42 +60,43 @@
               </div>
               <?php 
               if(isset($schedule[$i])):
-              $program = $schedule[$i];
+                $program = $schedule[$i];
               ?>
               @foreach($program['names'] as $j=>$name)
               <div class="row-fluid">
                <div class="col-md-6">
-                <div class="form-group">
-    
-                 <input type="text" name="programs[{{$i}}][names][]" value="{{$name}}" class="form-control" placeholder="Name">    
+                 <a href="#" class="rm-prgm"><span class="glyphicon glyphicon-remove">&nbsp;</span></a>
+
+                 <div class="form-group">
+
+                   <input type="text" name="programs[{{$i}}][names][]" value="{{$name}}" class="form-control" placeholder="Name">    
+                 </div>
+
                </div>
+               <div class="col-md-3">
+                <div class="form-group input-group clockpicker"  data-autoclose="true">
+                  <input type="text" name="programs[{{$i}}][starts][]" value="{{$program['starts'][$j]}}" class="form-control" placeholder="Start">  
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                  </span>           
+                </div>
+              </div>
 
-             </div>
-             <div class="col-md-3">
-              <div class="form-group input-group clockpicker"  data-autoclose="true">
+              <div class="col-md-3">
+                <div class="form-group input-group clockpicker" data-autoclose="true">
 
-                <input type="text" name="programs[{{$i}}][starts][]" value="{{$program['starts'][$j]}}" class="form-control" placeholder="Start">  
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-time"></span>
-                </span>           
+
+                  <input type="text" name="programs[{{$i}}][ends][]" value="{{$program['ends'][$j]}}" class="form-control" placeholder="End">  
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
+                  </span>          
+                </div>
               </div>
             </div>
 
-            <div class="col-md-3">
-              <div class="form-group input-group clockpicker" data-autoclose="true">
 
-
-                <input type="text" name="programs[{{$i}}][ends][]" value="{{$program['ends'][$j]}}" class="form-control" placeholder="End">  
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-time"></span>
-                </span>          
-              </div>
-            </div>
-          </div>
-
-
-          @endforeach
-        <?php endif; ?>
+            @endforeach
+          <?php endif; ?>
         </div>      
       </div>
     </div>
@@ -118,35 +119,34 @@
 
 </div>
 <div class="hide">
-              <div class="row-fluid prgm">
-               <div class="col-md-6">
-                <div class="form-group">
-    
-                 <input type="text"  class="name form-control" placeholder="Name">    
-               </div>
+  <div class="row-fluid prgm">
+   <div class="col-md-6">
+    <a href="#" class="rm-prgm"><span class="glyphicon glyphicon-remove">&nbsp;</span></a>
+    <div class="form-group">
+     <input type="text"  class="name form-control" placeholder="Name">    
+   </div>
+ </div>
+ <div class="col-md-3">
+  <div class="form-group input-group clockpicker"  data-autoclose="true">
 
-             </div>
-             <div class="col-md-3">
-              <div class="form-group input-group clockpicker"  data-autoclose="true">
+    <input type="text" class="start form-control" placeholder="Start">  
+    <span class="input-group-addon">
+      <span class="glyphicon glyphicon-time"></span>
+    </span>           
+  </div>
+</div>
 
-                <input type="text" class="start form-control" placeholder="Start">  
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-time"></span>
-                </span>           
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="form-group input-group clockpicker" data-autoclose="true">
+<div class="col-md-3">
+  <div class="form-group input-group clockpicker" data-autoclose="true">
 
 
-                <input type="text" class="end form-control" placeholder="End">  
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-time"></span>
-                </span>          
-              </div>
-            </div>
-          </div>
+    <input type="text" class="end form-control" placeholder="End">  
+    <span class="input-group-addon">
+      <span class="glyphicon glyphicon-time"></span>
+    </span>          
+  </div>
+</div>
+</div>
 </div>	
 @stop
 @section('foot')
@@ -161,6 +161,6 @@
 
   });
 </script>
-  <script type="text/javascript" src="{{asset('js/manageepg.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/manageepg.js')}}"></script>
 
 @stop

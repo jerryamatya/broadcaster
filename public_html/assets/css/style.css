@@ -14,3 +14,8 @@ body{
     background-image:url(../images/horizontal_loading.gif);
     min-height:10px;
 }
+.rm-prgm{
+	    position: absolute;
+    left: -5px;
+    top: 8px;
+}

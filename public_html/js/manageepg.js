@@ -14,4 +14,13 @@
 
 	});
 
+	$(".epg-body").on('click','.rm-prgm',function(e){
+		e.preventDefault();
+		var rm = $(this).parent().parent();
+
+		rm.fadeOut("normal", function() {
+        	$(this).remove();
+    	});
+	});
+
 })(jQuery);
