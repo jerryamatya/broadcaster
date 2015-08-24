@@ -37,10 +37,7 @@ Route::group(['prefix'=>'admin','before'=>'csrf','middleware'=>'auth'], function
 
     Route::get('notifications/list', ['as'=>'notificationsList','uses'=>'admin\NotificationsController@index']);
     Route::get('notifications/config', ['as'=>'notificationsConfigList','uses'=>'admin\NotificationsController@config']);
-    Route::post('notifications/configstore', ['as'=>'notificationsConfigStore','uses'=>'admin\NotificationsController@configstore']);
-
-
-
+    Route::post('notifications/{channelId}/configstore', ['as'=>'notificationsConfigStore','uses'=>'admin\NotificationsController@configstore']);
 
 	Route::group(['prefix'=>'services'], function(){
 		Route::get('channel', ['as'=>'channelList','uses'=>'admin\ChannelController@index']);
@@ -71,12 +68,11 @@ Route::group(['prefix'=>'admin','before'=>'csrf','middleware'=>'auth'], function
 		Route::get('newsapp/{id}/changestatus', ['as'=>'newsappChangeStatus','uses'=>'admin\NewsappController@changeStatus']);
 		Route::get('newsapp/{id}/delete', ['as'=>'newsappDelete','uses'=>'admin\NewsappController@delete']);
 
-		Route::get('channel/{id}/config', ['as'=>'channelConfig','uses'=>'admin\ChannelController@getConfig']);
-		Route::post('channel/{id}/config/store', ['as'=>'channelConfigStore','uses'=>'admin\ChannelController@storeConfig']);
+		Route::get('channel/{id}/config', ['as'=>'channelConfig','uses'=>'admin\ConfigController@channelconfig']);
+		Route::post('channel/{id}/config/store', ['as'=>'channelConfigStore','uses'=>'admin\ConfigController@channelconfigstore']);
 		Route::post('channel/{configid}/config/update', ['as'=>'channelConfigUpdate','uses'=>'admin\ChannelController@updateConfig']);
 	});
 });
-
 
 //broadcaster
 	Route::get('broadcaster/register', ['as'=>'registerBroadcaster','uses'=>'Auth\AuthController@getRegister']);

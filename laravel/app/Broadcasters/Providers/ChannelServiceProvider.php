@@ -28,6 +28,9 @@ class ChannelServiceProvider extends BaseServiceProvider {
 	{
 		return $this->model->findOrFail($id);
 	}
+	public function getWithConfig($channelId){
+		return $this->model->with('config')->where('object_id','=',$channelId)->get();
+	}
 
 	public function getByIdWithData($id)
 	{
@@ -130,10 +133,10 @@ class ChannelServiceProvider extends BaseServiceProvider {
 	{
 		return $this->model->with('epg')->findOrFail($id);
 	}
-	public function getWithConfig($id)
-	{
-		return $this->model->with('config')->find($id);
-	}
+	//public function getWithConfig($id)
+	//{
+		//return $this->model->with('config')->find($id);
+	//}
 	public function createConfig($broadcasterId, $request)
 	{
 		try {
@@ -189,7 +192,9 @@ class ChannelServiceProvider extends BaseServiceProvider {
 			return $q->active()->with(['programs'=>function($q){
 				return $q->orderBy('day');
 			}]);
-		},'config'])->active()->where('broadcaster_id','=',$id)->get();
+		},'configs'=>function($q){
+			return $q->where('type','=','channel');
+		}])->active()->where('broadcaster_id','=',$id)->get();
 	}
 
 

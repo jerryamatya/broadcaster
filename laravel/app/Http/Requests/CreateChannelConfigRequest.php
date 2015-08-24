@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class CreateNotificationsConfigRequest  extends Request {
+class CreateChannelConfigRequest  extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,11 +22,6 @@ class CreateNotificationsConfigRequest  extends Request {
 	public function rules()
 	{
 		return [
-			'broadcaster_id'=>'required',
-			//'broadcaster_id'=>'required',
-			'config.parse_keys.appId'=>'required',
-			'config.parse_keys.clientId'=>'required',
-			'config.parse_keys.restId'=>'required',
 		];
 	}
 

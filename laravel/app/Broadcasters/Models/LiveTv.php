@@ -71,8 +71,8 @@ class LiveTv extends BaseModel{
     {
         return $query;
     }
-	public function config()
+	public function configs()
 	{
-		return $this->hasOne('Broadcasters\Models\Config','object_id');
+		return $this->hasMany('Broadcasters\Models\Config','object_id');
 	}	
 }

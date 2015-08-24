@@ -16,6 +16,16 @@ class Config extends BaseModel{
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['object_id','key','value'];
+	protected $fillable = ['object_id','key','type','value'];
+
+	public function getValueAttribute($value)
+    {
+        return unserialize($value);
+    }
+
+	public function channel()
+	{
+		return $this->belongsTo('Broadcasters\Models\LiveTv','object_id');
+	}
 
 }

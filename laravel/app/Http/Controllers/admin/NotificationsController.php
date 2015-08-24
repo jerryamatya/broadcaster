@@ -21,12 +21,12 @@ class NotificationsController extends MyBaseController {
 	}
 	public function index()
 	{
-		$broadcasters = $this->broadcasterServiceProvider->get(true);
+		//$broadcasters = $this->broadcasterServiceProvider->get(true);
 		$configs = $this->configServiceProvider->getByKey('parse_keys_config');
 		$data = [
 			'broadcasters'
 		];
-		return view('admin.notifications.index')->with(compact($data));
+		return view('admin.notifications.manage')->with(compact($data));
 	}
 	public function config()
 	{
@@ -37,9 +37,9 @@ class NotificationsController extends MyBaseController {
 		return view('admin.notifications.config')->with(compact($data));
 
 	}
-	public function configstore(CreateNotificationsConfigRequest $request)
+	public function configstore($id,CreateNotificationsConfigRequest $request)
 	{
-		$this->configServiceProvider->create($request,'parse_keys_config');
+		$this->configServiceProvider->create($id,$request,'parse_keys_config');
 		return redirect()->route('notificationsConfigList')->withSuccess('Notification Config Created');
 	}
 }

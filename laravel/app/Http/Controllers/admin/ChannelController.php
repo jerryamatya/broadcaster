@@ -69,9 +69,10 @@ class ChannelController extends MyBaseController {
 	public function getConfig($id)
 	{
 		$channel = $this->channel->getWithConfig($id);
+
 		if($channel->count() && $channel->config)
 			return view('admin.channel.updateconfig')->with(compact('channel'));
-		return view('admin.channel.createconfig')->with(compact('channel'));
+		return view('admin.channel.createconfig')->with(compact('channel','broadcasters'));
 	}	
 	public function storeConfig($id, CreateConfigRequest $request)
 	{

@@ -9,7 +9,8 @@ class ConfigTransformer extends Transformer
 	public  function transform($model){
 		if(!$model || !$this->platform)
 			return null;
-		$config = unserialize($model->value);
+		//return $model->value;
+		$config = $model->value;
 		return [
 			'info'=>$model->info,
 			'addcode'=>$config[$this->platform]['addcode']

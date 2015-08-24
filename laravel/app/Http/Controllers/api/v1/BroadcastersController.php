@@ -138,15 +138,12 @@ class BroadcastersController extends \App\Http\Controllers\api\ApiController {
 
 		if(!$newsAppApiSources){
 			$newsAppApiResponse =  $this->notFoundMessage('No data available.');
-
 		}
 		else
 		{
 			$newsAppTransformer = new \Broadcasters\Transformers\NewsAppTransformer();
 			$newsAppApiResponse = $newsAppTransformer->transformCollection($newsAppApiSources);
-
 		}
-
 		$response = [
 			'info'=>$infoResponse,
 			'config'=>$configResponse,

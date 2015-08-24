@@ -2,7 +2,7 @@
 @section('content')
 @include('admin.partials.error')
 <?php
-	$config = unserialize($broadcaster->config->value);
+	$config = $broadcaster->config->value;
 ?>
 <h3> Config for {{$broadcaster->company_name}} </h3>
 <form class="form-horizontal" role="form" method="POST" action="{{route('broadcasterConfigUpdate',$broadcaster->config->id)}}">
