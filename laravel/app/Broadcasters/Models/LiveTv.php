@@ -74,5 +74,9 @@ class LiveTv extends BaseModel{
 	public function configs()
 	{
 		return $this->hasMany('Broadcasters\Models\Config','object_id');
-	}	
+	}
+	public function notifications()
+	{
+		return $this->hasMany('Broadcasters\Models\Notification','channel_id');
+	}
 }

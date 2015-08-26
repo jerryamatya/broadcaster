@@ -37,7 +37,8 @@ Route::group(['prefix'=>'admin','before'=>'csrf','middleware'=>'auth'], function
 
     Route::get('notifications/list', ['as'=>'notificationsList','uses'=>'admin\NotificationsController@index']);
     Route::get('notifications/config', ['as'=>'notificationsConfigList','uses'=>'admin\NotificationsController@config']);
-    Route::post('notifications/{channelId}/configstore', ['as'=>'notificationsConfigStore','uses'=>'admin\NotificationsController@configstore']);
+    Route::get('notifications/channel/{channelId}/manage', ['as'=>'channelNotificationManage','uses'=>'admin\NotificationsController@manage']);
+    Route::post('notifications/channel/{channelId}/save', ['as'=>'channelNotificationSave','uses'=>'admin\NotificationsController@save']);
 
 	Route::group(['prefix'=>'services'], function(){
 		Route::get('channel', ['as'=>'channelList','uses'=>'admin\ChannelController@index']);
@@ -107,14 +108,10 @@ Route::group(['prefix'=>'broadcaster','middleware'=>['authBroadcaster','authBroa
 		Route::get('vod', ['as'=>'bvodList','uses'=>'broadcaster\VodController@index']);
 		Route::get('vod/{id}/edit', ['as'=>'bvodEdit','uses'=>'broadcaster\VodController@edit']);
 		Route::post('vod/{id}/update', ['as'=>'bvodUpdate','uses'=>'broadcaster\VodController@update']);
-
-		
 	});
-
 });
 
 Route::get('auth/logout', ['as'=>'logout','uses'=>'Auth\AuthController@getLogout']);
-
 
 //Route for api
 Route::group(['prefix'=>'api/v1'],function(){
@@ -123,14 +120,10 @@ Route::group(['prefix'=>'api/v1'],function(){
 	Route::get('broadcasters/{id}/newsappapisources','api\v1\BroadcastersController@newsappsources');
 	Route::get('channels/{id}','api\v1\LiveTvController@view');
 	Route::get('channels/{id}/epgprograms','api\v1\EpgController@getByChannel');
-	
 	Route::get('epg/{id}','api\v1\EpgController@getByChannel');
-	
 	Route::get('broadcasters/{id}/news/{limit}','api\v1\NewsBlogController@getBroadcasterNews');
 	Route::get('broadcasters/{id}/services/vod','api\v1\VodController@getBroadcasterVod');
-
 	Route::get('broadcasters/{id}/data','api\v1\BroadcastersController@getData');
-
 });
 
 //test changes 1

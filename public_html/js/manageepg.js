@@ -9,9 +9,6 @@
 		prgm.find('.end').attr('name',"programs["+day+"][ends][]");
 		prgm.clone().appendTo(holder);
 		holder.find('.prgm .clockpicker').clockpicker();
-
-
-
 	});
 
 	$(".epg-body").on('click','.rm-prgm',function(e){

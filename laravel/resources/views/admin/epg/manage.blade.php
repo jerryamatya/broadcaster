@@ -158,7 +158,6 @@
   $(function() {
     $( ".sortable:first" ).sortable();
     $('.sortable').find('.clockpicker').clockpicker();
-
   });
 </script>
 <script type="text/javascript" src="{{asset('js/manageepg.js')}}"></script>

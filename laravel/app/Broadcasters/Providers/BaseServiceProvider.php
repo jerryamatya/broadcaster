@@ -8,4 +8,8 @@ class BaseServiceProvider {
 			return $this->model->take($count)->with($with)->active()->where('broadcaster_id','=',$broadcaster)->get();
 		return $this->model->take($count)->with($with)->active()->get();
 	}
+	public function getWith($name)
+	{
+		return $this->model->with($name)->get();
+	}
 }
