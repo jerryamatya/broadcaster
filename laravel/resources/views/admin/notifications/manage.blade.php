@@ -4,13 +4,14 @@
 @stop
 @section('content')
 @include('admin.partials.error')
+@if($channel):
 <div class="row">
   {!!Form::open(['route' => ['channelNotificationSave',$channel->id],'id'=>''])!!}
   <div class="col-md-12">
     <h3>Notification for {{$channel->name}}</h3>
     <div class="panel-group noti-body">
       <a href="#" class="addnoti"><span class="glyphicon glyphicon-plus"></span>new</a><br><br>
-      @if($channel->notifications->count())
+      @if($channel->notifications)
       <?php $i=0;?>
       @foreach($channel->notifications as $notification)
       <div class="panel panel-default single" data-index="{{$i}}">
@@ -52,6 +53,10 @@
   </div> 
   {!!Form::close()!!}
 </div>
+@else
+    {!!"<h3>No Channel</h3>"!!}
+@endif
+
 <!--clone section-->
 <div class="hide">
   <div class="row-fluid notification_clone">
