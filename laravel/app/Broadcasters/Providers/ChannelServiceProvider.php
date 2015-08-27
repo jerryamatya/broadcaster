@@ -34,7 +34,14 @@ class ChannelServiceProvider extends BaseServiceProvider {
 	public function getWithNotifications($id)
 	{
 		return $this->model->with('notifications')->where('id',$id)->first();
-	}	
+	}
+	public function getAllWithNotificationsAndConfig()
+	{
+		return $this->model->with(['notifications','configs'=>function($q){
+			$q->where('key','=','channel_parse_keys')->first();
+		}])->get();
+
+	}
 
 	public function getByIdWithData($id)
 	{

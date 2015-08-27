@@ -13,23 +13,61 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 			if($notification['id']):
 
 				$model = $this->model->find($notification['id']);
-				if(isset($notification['remove'])):
-					$model->delete();
-					continue;
-				endif;
-				$model->type = $notification['type'];
-				$model->data = $notification['data'];
-				$model->time = $notification['time'];
-				$model->msg = $notification['msg'];
-				$model->save();
+			if(isset($notification['remove'])):
+				$model->delete();
+			continue;
+			endif;
+			$model->type = $notification['type'];
+			$model->data = $notification['data'];
+			$model->time = $notification['time'];
+			$model->msg = $notification['msg'];
+			$model->save();
 			else:
 				if(isset($notification['remove'])):
 					continue;
 				endif;				
 				$data = $notification+['channel_id'=>$id];
 				$this->model->create($data);				
-			endif;
-		endforeach;
-	}
+				endif;
+				endforeach;
+			}
 
-}
+			public function notify($schedule,ChannelServiceProvider $channelService){
+				$channels = $channelService->getAllWithNotificationsAndConfig();
+				foreach($channels as $channel):
+					$parseConfig = $channel->configs->count()?$channel->configs->first():null;
+				$notifications = $channel->notifications->count()?$channel->notifications:null;
+				if(!$parseConfig && !$notifications):
+					if(!$parseConfig['apiKey'] ||!$parseConfig['restKey'] ||!$parseConfig['masterKey']):
+						continue;
+					endif;
+					foreach($notifications as $notification):
+						$time = date("H:i", strtotime('-345 minutes', strtotime($notification->time)));
+					$schedule->call(function() use ($notification){
+				//sendNotification('test notification 1');
+						ParseClient::initialize(
+							$parseConfig['apiKey'],
+							$parseConfig['restKey'],
+							$parseConfig['masterKey']
+							);
+						$query = ParseInstallation::query();
+						$query->containedIn('channels', ['','global']);
+				//$types = ['live','latest','featured','popular','news'];
+						$not_data =[];
+						ParsePush::send(array(
+							"where" => $query,
+							"data" => array(
+								"alert" => $notification->msg,
+								"nitv_b_typeId" => $notification->type,
+								"nitv_b_data"=>$not_data
+								)
+							));
+
+						\Log::info(error_get_last ());
+					})->dailyAt($time);
+					endforeach;
+					endif;
+					endforeach;
+				}
+
+			}

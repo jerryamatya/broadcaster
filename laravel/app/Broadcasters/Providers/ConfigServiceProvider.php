@@ -13,6 +13,7 @@ class ConfigServiceProvider extends BaseServiceProvider {
 	{
 		return $this->model->where(['object_id'=>$channelId,'type'=>'channel'])->get();
 	}
+	
 	public function create($object_id, $request, $key)
 	{
 		try {

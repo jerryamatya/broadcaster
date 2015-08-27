@@ -5,7 +5,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Parse\ParseClient as ParseClient;
 use Parse\ParsePush as ParsePush;
 use Parse\ParseInstallation;
-
+use Illuminate\Container\Container;
 class Kernel extends ConsoleKernel {
 
 	/**
@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel {
 	protected $commands = [
 	'App\Console\Commands\Inspire',
 	];
-
+	protected $notificationService;
 	/**
 	 * Define the application's command schedule.
 	 *
@@ -27,7 +27,11 @@ class Kernel extends ConsoleKernel {
 	{
 		$schedule->command('inspire')
 		->hourly();
+		$container = new Container();
 
+		$notificationService = $container->make('\Broadcasters\Providers\NotificationsServiceProvider');
+		$channelService = $container->make('\Broadcasters\Providers\ChannelServiceProvider');
+		$notificationService->notify($schedule, $channelService);
 		$notifications = [];
 		$notifications[] = [
 			'msg'=>"Coming up Himalaya Fatafat at 12:00",

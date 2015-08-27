@@ -36,7 +36,7 @@ class ConfigController extends MyBaseController {
 		'parseKeysConfig'=>'channel_parse_keys'
 		];
 		$apiLabels = ["categories"=>"categories","category_news"=>"Category News","single_news"=>"Single News","epg"=>"EPG",'recent_news'=>"Recent News"];
-		$parseKeysLabels = ["appId"=>"Application Id","clientId"=>"Client Id","restId"=>"Rest Id"];
+		$parseKeysLabels = ["appKey"=>"Application Key","restKey"=>"Rest Key","masterKey"=>"Master Key",];
 		$data = ['channel','apiLabels','parseKeysLabels'];
 		foreach($configindexes as $k=>$v):
 			$$k = $config->filter(function($obj) use ($v)
