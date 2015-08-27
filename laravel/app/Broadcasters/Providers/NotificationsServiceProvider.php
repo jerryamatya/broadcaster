@@ -34,11 +34,13 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 
 			public function notify($schedule,ChannelServiceProvider $channelService){
 				$channels = $channelService->getAllWithNotificationsAndConfig();
+
 				foreach($channels as $channel):
 					$parseConfig = $channel->configs->count()?$channel->configs->first():null;
 				$notifications = $channel->notifications->count()?$channel->notifications:null;
-				if(!$parseConfig && !$notifications):
-					if(!$parseConfig['apiKey'] ||!$parseConfig['restKey'] ||!$parseConfig['masterKey']):
+				if($parseConfig==null || $notifications==null)
+					continue;
+					if(!$parseConfig->value['appKey'] ||!$parseConfig->value['restKey'] ||!$parseConfig->value['masterKey']):
 						continue;
 					endif;
 					foreach($notifications as $notification):
@@ -46,9 +48,9 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 					$schedule->call(function() use ($notification){
 				//sendNotification('test notification 1');
 						ParseClient::initialize(
-							$parseConfig['apiKey'],
-							$parseConfig['restKey'],
-							$parseConfig['masterKey']
+							$parseConfig->value['appKey'],
+							$parseConfig->value['restKey'],
+							$parseConfig->value['masterKey']
 							);
 						$query = ParseInstallation::query();
 						$query->containedIn('channels', ['','global']);
@@ -66,7 +68,6 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 						\Log::info(error_get_last ());
 					})->dailyAt($time);
 					endforeach;
-					endif;
 					endforeach;
 				}
 
