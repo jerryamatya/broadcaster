@@ -35,8 +35,7 @@ Route::group(['prefix'=>'admin','before'=>'csrf','middleware'=>'auth'], function
 	Route::post('broadcaster/{id}/config/store', ['as'=>'broadcasterConfigStore','uses'=>'admin\BroadcasterController@storeConfig']);
 	Route::post('broadcaster/{configid}/config/update', ['as'=>'broadcasterConfigUpdate','uses'=>'admin\BroadcasterController@updateConfig']);
 
-    Route::get('notifications/list', ['as'=>'notificationsList','uses'=>'admin\NotificationsController@index']);
-    Route::get('notifications/config', ['as'=>'notificationsConfigList','uses'=>'admin\NotificationsController@config']);
+    Route::get('notifications', ['as'=>'notificationsIndex','uses'=>'admin\NotificationsController@index']);
     Route::get('notifications/channel/{channelId}/manage', ['as'=>'channelNotificationManage','uses'=>'admin\NotificationsController@manage']);
     Route::post('notifications/channel/{channelId}/save', ['as'=>'channelNotificationSave','uses'=>'admin\NotificationsController@save']);
 

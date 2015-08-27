@@ -49,13 +49,8 @@
                   <li class='{{setActive('/services/vod')}}'><a href="{{route('vodList')}}">Vod</a></li>
                   <li class="divider"></li>
                 </ul>
-                <li class="dropdown {{setActive('/notifications')}}">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Notifications <span class="caret"></span></a>                
-                  <ul class="dropdown-menu" role="menu">
-                    <li class='{{setActive('/notifications/list')}}'><a href="{{route('notificationsList')}}">List</a></li>
-                    <li class='{{setActive('/notifications/config')}}'><a href="{{route('notificationsConfigList')}}">Config</a></li>
-                    <li class="divider"></li>
-                  </ul>
+                <li class="{{setActive('/notifications')}}">
+                <a href="{{route('notificationsIndex')}}">Notifications</a>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

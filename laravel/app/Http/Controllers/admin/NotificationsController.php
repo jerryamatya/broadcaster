@@ -30,12 +30,8 @@ class NotificationsController extends MyBaseController {
 	}
 	public function index()
 	{
-		//$broadcasters = $this->broadcasterServiceProvider->get(true);
-		$configs = $this->configServiceProvider->getByKey('parse_keys_config');
-		$data = [
-		'broadcasters'
-		];
-		return view('admin.notifications.manage')->with(compact($data));
+		$channels = $this->channelServiceProvider->all();
+		return view('admin.notifications.index')->with(compact('channels'));
 	}
 	public function config()
 	{

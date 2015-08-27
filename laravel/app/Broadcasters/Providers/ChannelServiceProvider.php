@@ -15,7 +15,10 @@ class ChannelServiceProvider extends BaseServiceProvider {
 		$this->countryModel = $countryModel;
 		$this->countries = $this->countryModel->lists('name','id');
 	}
-
+	public function all()
+	{
+		return $this->model->active()->get();
+	}
 	public function getAll(){
 		$channels = $this->model->all();
 		return [
