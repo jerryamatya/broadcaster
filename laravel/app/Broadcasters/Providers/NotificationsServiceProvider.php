@@ -12,7 +12,6 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 	public function save($id,$request)
 	{
 		$notifications = $request->get('notifications');
-		dd($notifications);
 		foreach($notifications as $notification):
 			if($notification['id']):
 				$model = $this->model->find($notification['id']);
@@ -46,6 +45,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 					if(!$parseConfig->value['appKey'] ||!$parseConfig->value['restKey'] ||!$parseConfig->value['masterKey']):
 						continue;
 					endif;
+					dd($notification);
 					foreach($notifications as $notification):
 						$time = date("H:i", strtotime('-345 minutes', strtotime($notification->time)));
 					$schedule->call(function() use ($notification){

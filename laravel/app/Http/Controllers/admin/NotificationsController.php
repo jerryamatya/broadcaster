@@ -51,7 +51,6 @@ class NotificationsController extends MyBaseController {
 	public function manage($channelId)
 	{
 		$channel = $this->channelServiceProvider->getWithNotifications($channelId);
-		return $channel;
 		return view('admin.notifications.manage')->with(compact('channel'));
 	}
 	public function save($id,CreateNotificationsRequest $request)
