@@ -12,9 +12,9 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 	public function save($id,$request)
 	{
 		$notifications = $request->get('notifications');
+		dd($notifications);
 		foreach($notifications as $notification):
 			if($notification['id']):
-
 				$model = $this->model->find($notification['id']);
 			if(isset($notification['remove'])):
 				$model->delete();
