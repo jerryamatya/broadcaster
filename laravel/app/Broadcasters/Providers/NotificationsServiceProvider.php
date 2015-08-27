@@ -1,4 +1,7 @@
 <?php namespace Broadcasters\Providers;
+use Parse\ParseClient as ParseClient;
+use Parse\ParsePush as ParsePush;
+use Parse\ParseInstallation;
 use Broadcasters\Models\Notification as Model;
 
 class NotificationsServiceProvider extends BaseServiceProvider{
@@ -66,7 +69,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 							));
 
 						\Log::info(error_get_last ());
-					})->dailyAt($time);
+					})->everyMinute();
 					endforeach;
 					endforeach;
 				}

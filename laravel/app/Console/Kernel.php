@@ -2,9 +2,6 @@
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Parse\ParseClient as ParseClient;
-use Parse\ParsePush as ParsePush;
-use Parse\ParseInstallation;
 use Illuminate\Container\Container;
 class Kernel extends ConsoleKernel {
 
