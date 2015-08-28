@@ -42,7 +42,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 					return $channelService->getAllWithNotificationsAndConfig();
 				});
 				foreach($channels as $channel):
-					$parseConfig = $channel->configs->count()?$channel->configs[0]:null;
+					$parseConfig = $channel->configs->count()?$channel->configs:null;
 				$notifications = $channel->notifications->count()?$channel->notifications:null;
 				if($notifications)
 					dd($parseConfig);
