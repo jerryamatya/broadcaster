@@ -50,6 +50,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 					continue;
 				endif;
 				foreach($notifications as $notification):
+					dd($notification);
 				\Log::info('test');
 
 					//dd($parseConfig);
