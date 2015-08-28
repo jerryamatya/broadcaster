@@ -44,14 +44,13 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 				foreach($channels as $channel):
 					$parseConfig = $channel->configs->count()?$channel->configs->first():null;
 				$notifications = $channel->notifications->count()?$channel->notifications:null;
-				if($notifications)
-					dd($notifications);
 				if($parseConfig==null || $notifications==null)
 					continue;
 				if(!$parseConfig->value['appKey'] ||!$parseConfig->value['restKey'] ||!$parseConfig->value['masterKey']):
 					continue;
 				endif;
 				foreach($notifications as $notification):
+					dd($parseConfig);
 					$time = date("H:i", strtotime('-345 minutes', strtotime($notification->time)));
 				$schedule->call(function() use ($notification){
 				//sendNotification('test notification 1');
@@ -61,7 +60,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 						$parseConfig->value['masterKey']
 						);
 					$query = ParseInstallation::query();
-					$query->containedIn('channels', ['','global']);
+					$query->containedIn('channels', ['']);
 				//$types = ['live','latest','featured','popular','news'];
 					$not_data =[];
 					ParsePush::send(array(
