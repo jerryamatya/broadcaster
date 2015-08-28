@@ -49,6 +49,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 				if(!$parseConfig->value['appKey'] ||!$parseConfig->value['restKey'] ||!$parseConfig->value['masterKey']):
 					continue;
 				endif;
+				dd($notifications);
 				foreach($notifications as $notification):
 					dd($notification);
 				\Log::info('test');
