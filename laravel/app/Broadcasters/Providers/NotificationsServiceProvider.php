@@ -47,17 +47,14 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 				if($notifications)
 				if($parseConfig==null || $notifications==null)
 					continue;
-				dd($parseConfig);
 				if(!$parseConfig->value['appKey'] ||!$parseConfig->value['restKey'] ||!$parseConfig->value['masterKey']):
 					continue;
 				endif;
-				dd($parseConfig);
 				foreach($notifications as $notification):
 
 					//dd($parseConfig);
 					$time = date("H:i", strtotime('-345 minutes', strtotime($notification->time)));
 				$schedule->call(function() use ($notification,$parseConfig){
-				\Log::info('test');
 				//sendNotification('test notification 1');
 					ParseClient::initialize(
 						$parseConfig->value['appKey'],
