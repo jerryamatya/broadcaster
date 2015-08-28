@@ -43,6 +43,8 @@ class ConfigServiceProvider extends BaseServiceProvider {
 				$model->value = serialize($value);
 				$model->save();
 			}
+			$key = \Config::get('site.cacheChannelsWithNotifications');				
+			\Cache::forget($key);			
 		}
 
 	}
