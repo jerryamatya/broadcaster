@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel {
 		$notificationService = $container->make('\Broadcasters\Providers\NotificationsServiceProvider');
 		$channelService = $container->make('\Broadcasters\Providers\ChannelServiceProvider');
 		$notificationService->notify($schedule, $channelService);
-		$notifications = [];
+	/*	$notifications = [];
 		$notifications[] = [
 			'msg'=>"Coming up Himalaya Fatafat at 12:00",
 			'time'=>"11:55",
@@ -74,7 +74,7 @@ class Kernel extends ConsoleKernel {
 
 				\Log::info(error_get_last ());
 			})->dailyAt($time);
-		endforeach;
+		endforeach;*/
 	}
 	
 	function sendNotification($msg){
