@@ -41,7 +41,6 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 				$channels = \Cache::get($key, function() use ($channelService){
 					return $channelService->getAllWithNotificationsAndConfig();
 				});
-				dd($channels);
 				foreach($channels as $channel):
 					$parseConfig = $channel->configs->count()?$channel->configs->first():null;
 				$notifications = $channel->notifications->count()?$channel->notifications:null;
@@ -50,6 +49,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 				if(!$parseConfig->value['appKey'] ||!$parseConfig->value['restKey'] ||!$parseConfig->value['masterKey']):
 					continue;
 				endif;
+				dd($parseConfig);
 				foreach($notifications as $notification):
 					dd($notification);
 				\Log::info('test');
