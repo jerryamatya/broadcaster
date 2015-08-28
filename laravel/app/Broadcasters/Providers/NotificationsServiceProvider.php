@@ -45,7 +45,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 					$parseConfig = $channel->configs->count()?$channel->configs->first():null;
 				$notifications = $channel->notifications->count()?$channel->notifications:null;
 				if($notifications)
-					dd($notifications);
+					dd($parseConfig);
 				if($parseConfig==null || $notifications==null)
 					continue;
 				dd($parseConfig);
