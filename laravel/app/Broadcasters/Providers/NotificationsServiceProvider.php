@@ -75,7 +75,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 						));
 
 					\Log::info(error_get_last ());
-				})->everyMinute();
+				})->dailyAt($time);
 				endforeach;
 				endforeach;
 			}
