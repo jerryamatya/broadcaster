@@ -41,17 +41,16 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 				$channels = \Cache::get($key, function() use ($channelService){
 					return $channelService->getAllWithNotificationsAndConfig();
 				});
-
 				foreach($channels as $channel):
 					$parseConfig = $channel->configs->count()?$channel->configs->first():null;
 				$notifications = $channel->notifications->count()?$channel->notifications:null;
-				dd($notifications);
+				if($notifications)
+					dd($notifications);
 				if($parseConfig==null || $notifications==null)
 					continue;
 				if(!$parseConfig->value['appKey'] ||!$parseConfig->value['restKey'] ||!$parseConfig->value['masterKey']):
 					continue;
 				endif;
-				dd($notifications);
 				foreach($notifications as $notification):
 					$time = date("H:i", strtotime('-345 minutes', strtotime($notification->time)));
 				$schedule->call(function() use ($notification){
