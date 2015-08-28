@@ -52,7 +52,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 				foreach($notifications as $notification):
 					//dd($parseConfig);
 					$time = date("H:i", strtotime('-345 minutes', strtotime($notification->time)));
-				$schedule->call(function() use ($notification){
+				$schedule->call(function() use ($notification,$parseConfig){
 				//sendNotification('test notification 1');
 					ParseClient::initialize(
 						$parseConfig->value['appKey'],
