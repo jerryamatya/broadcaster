@@ -46,6 +46,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 				$notifications = $channel->notifications->count()?$channel->notifications:null;
 				if($parseConfig==null || $notifications==null)
 					continue;
+				dd($parseConfig);
 				if(!$parseConfig->value['appKey'] ||!$parseConfig->value['restKey'] ||!$parseConfig->value['masterKey']):
 					continue;
 				endif;
