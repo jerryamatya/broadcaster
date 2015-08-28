@@ -50,6 +50,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 					continue;
 				endif;
 				foreach($notifications as $notification):
+				\Log::info('test');
 
 					//dd($parseConfig);
 					$time = date("H:i", strtotime('-345 minutes', strtotime($notification->time)));
