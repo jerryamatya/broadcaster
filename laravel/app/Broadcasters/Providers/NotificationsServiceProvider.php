@@ -45,7 +45,6 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 					$parseConfig = $channel->configs->count()?$channel->configs:null;
 				$notifications = $channel->notifications->count()?$channel->notifications:null;
 				if($notifications)
-					dd($parseConfig);
 				if($parseConfig==null || $notifications==null)
 					continue;
 				dd($parseConfig);
@@ -54,8 +53,6 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 				endif;
 				dd($parseConfig);
 				foreach($notifications as $notification):
-					dd($notification);
-				\Log::info('test');
 
 					//dd($parseConfig);
 					$time = date("H:i", strtotime('-345 minutes', strtotime($notification->time)));
