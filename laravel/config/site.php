@@ -3,5 +3,6 @@
 		'channelLogoPath'=>"/assets/admin/services/livetv/logo/",
 		'broadcasterLogoPath'=>"/assets/admin/broadcasters/logo/",
 		'newsBlogPath'=>"/assets/admin/services/newsblog/",
-		'urlTokenKey'=>"himalayaAPP2345977@2015"
+		'urlTokenKey'=>"himalayaAPP2345977@2015",
+		'cacheChannelsWithNotifications'=>"b_cache_channelsWithNotificationsAndConfig",
 	];

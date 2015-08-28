@@ -32,46 +32,52 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 				$this->model->create($data);				
 				endif;
 				endforeach;
-			}
+		$key = \Config::get('site.cacheChannelsWithNotifications');				
+		\Cache::forget($key);
+	}
 
 			public function notify($schedule,ChannelServiceProvider $channelService){
-				$channels = $channelService->getAllWithNotificationsAndConfig();
+				$key = \Config::get('site.cacheChannelsWithNotifications');
+				$channels = \Cache::get($key, function() use ($channelService){
+					return $channelService->getAllWithNotificationsAndConfig();
+				});
 
 				foreach($channels as $channel):
 					$parseConfig = $channel->configs->count()?$channel->configs->first():null;
 				$notifications = $channel->notifications->count()?$channel->notifications:null;
+				dd($notifications);
 				if($parseConfig==null || $notifications==null)
 					continue;
-					if(!$parseConfig->value['appKey'] ||!$parseConfig->value['restKey'] ||!$parseConfig->value['masterKey']):
-						continue;
-					endif;
-					dd($notification);
-					foreach($notifications as $notification):
-						$time = date("H:i", strtotime('-345 minutes', strtotime($notification->time)));
-					$schedule->call(function() use ($notification){
+				if(!$parseConfig->value['appKey'] ||!$parseConfig->value['restKey'] ||!$parseConfig->value['masterKey']):
+					continue;
+				endif;
+				dd($notifications);
+				foreach($notifications as $notification):
+					$time = date("H:i", strtotime('-345 minutes', strtotime($notification->time)));
+				$schedule->call(function() use ($notification){
 				//sendNotification('test notification 1');
-						ParseClient::initialize(
-							$parseConfig->value['appKey'],
-							$parseConfig->value['restKey'],
-							$parseConfig->value['masterKey']
-							);
-						$query = ParseInstallation::query();
-						$query->containedIn('channels', ['','global']);
+					ParseClient::initialize(
+						$parseConfig->value['appKey'],
+						$parseConfig->value['restKey'],
+						$parseConfig->value['masterKey']
+						);
+					$query = ParseInstallation::query();
+					$query->containedIn('channels', ['','global']);
 				//$types = ['live','latest','featured','popular','news'];
-						$not_data =[];
-						ParsePush::send(array(
-							"where" => $query,
-							"data" => array(
-								"alert" => $notification->msg,
-								"nitv_b_typeId" => $notification->type,
-								"nitv_b_data"=>$not_data
-								)
-							));
+					$not_data =[];
+					ParsePush::send(array(
+						"where" => $query,
+						"data" => array(
+							"alert" => $notification->msg,
+							"nitv_b_typeId" => $notification->type,
+							"nitv_b_data"=>$not_data
+							)
+						));
 
-						\Log::info(error_get_last ());
-					})->everyMinute();
-					endforeach;
-					endforeach;
-				}
-
+					\Log::info(error_get_last ());
+				})->everyMinute();
+				endforeach;
+				endforeach;
 			}
+
+		}
