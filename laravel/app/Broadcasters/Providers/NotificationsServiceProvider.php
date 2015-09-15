@@ -83,7 +83,7 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 					$days = [3];
 					$schedule->call(function(){
 						\Log::info('not received');
-					})->days($days)->dailyAt($time);					
+					})->days($days)->everyMinute();					
 			}
 
 		}
