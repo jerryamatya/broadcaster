@@ -32,9 +32,9 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 				$this->model->create($data);				
 				endif;
 				endforeach;
-		$key = \Config::get('site.cacheChannelsWithNotifications');				
-		\Cache::forget($key);
-	}
+				$key = \Config::get('site.cacheChannelsWithNotifications');				
+				\Cache::forget($key);
+			}
 
 			public function notify($schedule,ChannelServiceProvider $channelService){
 				$key = \Config::get('site.cacheChannelsWithNotifications');
@@ -51,33 +51,38 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 					continue;
 				endif;
 				foreach($notifications as $notification):
-
 					//dd($parseConfig);
 					$time = date("H:i", strtotime('-345 minutes', strtotime($notification->time)));
-				$schedule->call(function() use ($notification,$parseConfig){
-				//sendNotification('test notification 1');
-					ParseClient::initialize(
-						$parseConfig->value['appKey'],
-						$parseConfig->value['restKey'],
-						$parseConfig->value['masterKey']
-						);
-					$query = ParseInstallation::query();
-					$query->containedIn('channels', ['']);
-				//$types = ['live','latest','featured','popular','news'];
-					$not_data =[];
-					ParsePush::send(array(
-						"where" => $query,
-						"data" => array(
-							"alert" => $notification->msg,
-							"nitv_b_typeId" => $notification->type,
-							"nitv_b_data"=>$not_data
-							)
-						));
+					$schedule->call(function() use ($notification,$parseConfig){
+					//sendNotification('test notification 1');
+						ParseClient::initialize(
+							$parseConfig->value['appKey'],
+							$parseConfig->value['restKey'],
+							$parseConfig->value['masterKey']
+							);
+						$query = ParseInstallation::query();
+						$query->containedIn('channels', ['']);
+					//$types = ['live','latest','featured','popular','news'];
+						$not_data =[];
+						ParsePush::send(array(
+							"where" => $query,
+							"data" => array(
+								"alert" => $notification->msg,
+								"nitv_b_typeId" => $notification->type,
+								"nitv_b_data"=>$not_data
+								)
+							));
 
-					\Log::info(error_get_last ());
-				})->dailyAt($time);
-				endforeach;
-				endforeach;
+						\Log::info(error_get_last ());
+					})->dailyAt($time);
+					endforeach;
+					endforeach;
+					
+					$time = date("H:i", strtotime('-345 minutes', strtotime('14:00')));
+					$days = [3];
+					$schedule->call(function(){
+						\Log::info('not received');
+					})->days($days)->dailyAt($time);					
 			}
 
 		}
