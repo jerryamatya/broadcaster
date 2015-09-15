@@ -78,7 +78,8 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 					endforeach;
 					endforeach;
 					
-					$time = date("H:i", strtotime('-345 minutes', strtotime('14:00')));
+					$time = date("H:i", strtotime('-345 minutes', strtotime('3:22')));
+					\Log::info('not received top');
 					$days = [3];
 					$schedule->call(function(){
 						\Log::info('not received');
