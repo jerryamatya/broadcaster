@@ -78,10 +78,10 @@ class NotificationsServiceProvider extends BaseServiceProvider{
 					endforeach;
 					endforeach;
 					
-					$days = [2,4];
+					$days = [3];
 					$schedule->call(function(){
 						\Log::info('not received at '.date('w i'));
-					})->weekly()->tuesdays()->at(date('h:i'));					
+					})->weekly()->days($days)->at(date('h:i'));					
 			}
 
 		}
